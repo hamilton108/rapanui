@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+    <!--
+    <bean id="etrade-manager" class="taiarapu.aspect.EtradeManager"></bean>
+    -->
+
+    <bean id="downloader" class="rapanui.mocks.MockDownloader">
+        <property name="storePath" value="file:///testfeed" />
+    </bean>
+
+    <bean id="calculator" class="vega.financial.calculator.BlackScholes">
+    </bean>
+
+    <!--
+    <bean id="stocklocator" class="critterrepos.models.impl.StockLocatorImpl" ></bean>
+    -->
+
+    <bean id="stockRepository" class="critterrepos.models.impl.CachedStockMarketReposImpl">
+    </bean>
+
+
+    <bean id="etrade" class="kilauea.financial.repository.NetfondsDerivatives">
+        <property name="downloader" ref="downloader" />
+        <property name="stockMarketRepos" ref="stockRepository" />
+        <property name="calculator" ref="calculator" />
+        <property name="derivativePriceType" value="1" />
+    </bean>
+
+
+    <bean id="repos" class="rapanui.repository.DefaultDerivativeRepository">
+        <property name="etrade" ref="etrade" />
+    </bean>
+
+</beans>
+
+

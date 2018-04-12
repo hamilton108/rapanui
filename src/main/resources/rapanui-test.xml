@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--
+    <import resource="classpath:aop.xml" />
+    -->
+
+    <import resource="classpath:common.xml" />
+
+    <bean id="etransaction" class="rapanui.service.etransaction.TestEtransaction">
+        <property name="webClientManager" ref="webClientManager" />
+    </bean>
+
+    <bean id="webClientManager" class="netfondsrepos.webclient.DefaultWebClientManager">
+        <property name="realTime" value="false" />
+    </bean>
+
+    <bean id="downloader" class="netfondsrepos.downloader.MockDownloader">
+        <property name="storePath" value="/home/x/opt/java/rapanui/feed" />
+        <property name="applyCounter" value="true" />
+    </bean>
+
+    <bean id="runner" class="rapanui.runner.impl.TestRapanuiRunner">
+        <property name="critterRepos" ref="critterRepos" />
+        <property name="etradeRepository" ref="cached-etrade" />
+        <property name="etransaction" ref="etransaction" />
+        <property name="mail" ref="mail" />
+        <property name="dbService" ref="dbService" />
+    </bean>
+
+</beans>

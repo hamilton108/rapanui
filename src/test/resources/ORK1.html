@@ -1,0 +1,1272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Netfonds -- Derivater for Orkla</title>
+<link href="http://www.netfonds.no/static/css/netfonds.css?ts=1366211642" rel="stylesheet"  type="text/css">
+<link rel="SHORTCUT ICON" href="http://www.netfonds.no/static/bits/favicon.ico">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" /> 
+</head>
+<body class="hbody">
+<table class=twholepage>
+<tr>
+<td class=logoside><span width="1px"></span></td>
+<td class="maincolumn">
+<form action="meta-paper.php" method=get name="gototick" class=hsearch autocomplete=off>
+<div class="hlogostrip"><table class="hlogostrip"><tr>
+<td class="hlogo"><div class="hlogo"><a href="http://www.netfonds.no/"><img src="http://www.netfonds.no/static/bits/horizontal_logo_white1_small.png" alt="Netfonds Bank ASA" title="Netfonds Bank ASA" width=129 height=25 border=0></a></div>
+</td>
+<td class="hunlogo">&nbsp;<a class="login" href="https://www.netfonds.no/account/login.php">Logg inn</a>&nbsp;|&nbsp;<a href="/optionName.php?underlying_paper=ORK&amp;underlying_exchange=OSE&amp;exchange=OMFE&amp;help=t">Hjelp</a><span style="display: none; cursor: pointer;" id="topupdate" value="&nbsp;|&nbsp;Stopp oppdatering">&nbsp;|&nbsp;Start oppdatering</span>&nbsp;<input type="hidden" name="exchange" value="OSE" />
+<input class="pinput" id=papersearch type=text name="paper" size=6>&nbsp;<input type=submit class=hsearch value="S�k"><span class="middle">
+&nbsp;&nbsp;<a href="setlanguage.php?language=en_GB&originating_page=http://hopey.netfonds.no/optionName.php?underlying_paper=ORK&amp;underlying_exchange=OSE&amp;exchange=OMFE"><img src="http://www.netfonds.no/static/bits/flag_gb_24.png" alt=""  border="0" /></a></span>
+</td>
+</tr>
+</table>
+</div>
+
+</form>
+</td>
+<td class=logoside><span width="1px"></span></td>
+</tr>
+
+<tr>
+<td class=menutopside></td>
+<td class="maincolumn">
+
+<div class="hmenustrip">
+<table class=hmenustrip><tr><td nowrap>
+<a href="http://www.netfonds.no/index.php">Netfonds</a>&nbsp;|&nbsp;<a href="https://www.netfonds.no/account/registrering.php">Bli kunde</a>&nbsp;|&nbsp;<a href="https://www.netfonds.no/account/login.php">Min konto</a>&nbsp;|&nbsp;<a href="https://www.netfonds.no/account/handel.php">Handel</a>&nbsp;|&nbsp;<a href="http://www.netfonds.no/investeringskonto.php">Livkonto</a>&nbsp;|&nbsp;<a href="https://www.netfonds.no/account/managed-intro.php">Aktiv forvaltning</a>&nbsp;|&nbsp;<a href="https://www.netfonds.no/port/port.php">Verkt�y</a>&nbsp;|&nbsp;<a href="http://www.netfonds.no/quotes/funds-main.php">Fondsmarked</a>&nbsp;|&nbsp;<a href="http://www.netfonds.no/quotes/certificate-main.php">NDX</a>&nbsp;|&nbsp;<span class="htopselected"><a href="http://www.netfonds.no/quotes/market.php">Marked</a></span></td><td class=htime nowrap>
+<span id=toptime>torsdag 25/04-2013 08:26:00</span></td></tr></table></div>
+<div class="hmenustrip">
+<table class=hmenustrip><tr><td class=hmarket>
+<a href="https://www.netfonds.no/quotes/live.php">Live</a>&nbsp;|&nbsp;<span class="htopselected"><a href="market.php">Norge</a></span>&nbsp;|&nbsp;<a href="market.php?exchange=ST">Sverige</a>&nbsp;|&nbsp;<a href="market.php?exchange=CPH">Danmark</a>&nbsp;|&nbsp;<a href="market.php?exchange=ICEX">Island</a>&nbsp;|&nbsp;<a href="market.php?exchange=O">USA</a>&nbsp;|&nbsp;<a href="market.php?exchange=BTSE&types=LSE">Europa</a>&nbsp;|&nbsp;<a href="funds-main.php">Fond</a>&nbsp;|&nbsp;<a href="currencies.php?exchange=FXSB">Valuta</a>&nbsp;|&nbsp;<a href="market.php?exchange=ICEU&types=FU">R�varer</a>&nbsp;|&nbsp;<a href="nbb-main.php">Gr�marked</a></td><td nowrap class=hdelay><span id=menuupdate data="box.box_menu_updated_line,exchange.OMFE">Forsinkede kurser. Sist oppdatert: torsdag 25. april</span></td></tr></table>
+</div>
+<div class="hmenustrip">
+<table class=hmenustrip><tr><td class=hmarket>
+<a href="market.php?exchange=OSE">Oslo B�rs</a>
+&nbsp;|&nbsp;<a href="market.php?exchange=OAX">Oslo Axess</a>
+&nbsp;|&nbsp;<span class="htopselected"><a href="market.php?exchange=OMFE">Opsjoner</a></span>
+&nbsp;|&nbsp;<a href="market.php?exchange=OTC">Unoterte</a>
+&nbsp;|&nbsp;<a href="market.php?exchange=OSE&amp;types=B">Obligasjoner</a>
+</td></tr></table>
+</div>
+</td>
+<td class=menutopside></td>
+</tr>
+<tr>
+<td></td>
+<td class="maincolumn">
+<table class=homaintable><tr valign=top><td class="hsidetd">
+<table class="hsidetable">
+<tr><td><a href="market.php?exchange=OMFE">Oversikt</a></td></tr>
+<tr><td><a href="kurs.php?exchange=OMFE">Kursliste</a></td></tr>
+<tr><td><a href="kurs.php?exchange=OMFE&sec_types=FU">Futures</a></td></tr>
+<tr><td><a href="largest.php?exchange=OMFE">St�rste handler</a></td></tr>
+<tr><td><a href="derivatives.php">Underliggende</a></td></tr>
+</table>
+</td><td class="hcontent"><div class="hcontent"><script type="text/javascript" src="http://www.netfonds.no/static/js/general-min-gen.js?ts=1366828006"></script><script type="text/javascript" src="http://www.netfonds.no/static/js/paper-search-min-gen.js?ts=1366828019"></script><script  language="JavaScript" type="text/javascript">paperSearchBaseUrl = "";</script>
+<script  language="JavaScript" type="text/javascript">var imgUrl = "http://www.netfonds.no/static/";
+</script>
+<div><table id="updatetable1" width="" class="qbox" data="box.box_quote_line,paper.ORK,exchange.OSE,underlyingp.Y" callback="updateQuoteTitle" updated=""><tr>
+<th class="top" colspan="12">Kurs i underliggende papir ORK (Orkla)</th>
+</tr>
+<tr>
+<th>Siste</th>
+<th>Endring</th>
+<th>Endr%</th>
+<th>Kj�per</th>
+<th>Selger</th>
+<th>�pning</th>
+<th>H�y</th>
+<th>Lav</th>
+<th>Forrige</th>
+<th>Volum</th>
+<th>Verdi</th>
+<th>Handler</th>
+</tr>
+<tr>
+<td name="ju.l" id="ju.l">-</td><td class="same" name="ju.c">0.00</td>
+<td class="same" name="ju.cp">0.00%</td>
+<td class="right" id="ju.b.ORK.OSE" name="ju.b.ORK.OSE"><a href="https://www.netfonds.no/account/order.php?paper=ORK.OSE&amp;type=S&amp;slimit=49.15&amp;suggest_number=0&amp;skind=limit">49.15</a></td>
+<td class="right" id="ju.o.ORK.OSE" name="ju.o.ORK.OSE"><a href="https://www.netfonds.no/account/order.php?paper=ORK.OSE&amp;type=B&amp;blimit=50.20&amp;suggest_number=0&amp;bkind=limit">50.20</a></td>
+<td name="ju.op">-</td><td name="ju.h">-</td><td name="ju.lo">-</td><td name="ju.pr" id="ju.pr">49.84</td><td name="ju.vo">-</td><td name="ju.va">-</td><td name="ju.t">-</td></tr>
+</table>
+</div>
+<table class="com topmargin"><tr>
+<th class="top" colspan="9">Derivater</th>
+</tr>
+<tr>
+<th>Ticker</th>
+<th>Type</th>
+<th>Innl�sningskurs</th>
+<th>Bortfall</th>
+<th>Kj�per</th>
+<th>Selger</th>
+<th>Siste</th>
+<th>Volum</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<th class="top" colspan="9">American call</th>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E65&exchange=OMFE">ORK3E65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E60&exchange=OMFE">ORK3E60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.15</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E55&exchange=OMFE">ORK3E55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E50&exchange=OMFE">ORK3E50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>16/05-2013</td>
+<td>0.90</td><td>1.10</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E47&exchange=OMFE">ORK3E47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>16/05-2013</td>
+<td>2.45</td><td>3.95</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E38&exchange=OMFE">ORK3E38</a></td>
+<td class="left">American call</td>
+<td>38.00</td><td>16/05-2013</td>
+<td>11.00</td><td>13.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E41&exchange=OMFE">ORK3E41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>16/05-2013</td>
+<td>8.25</td><td>9.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3E44&exchange=OMFE">ORK3E44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>16/05-2013</td>
+<td>5.30</td><td>6.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3E44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F65&exchange=OMFE">ORK3F65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F60&exchange=OMFE">ORK3F60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>0.15</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F55&exchange=OMFE">ORK3F55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>20/06-2013</td>
+<td>0.07</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F32&exchange=OMFE">ORK3F32</a></td>
+<td class="left">American call</td>
+<td>32.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F32.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F35&exchange=OMFE">ORK3F35</a></td>
+<td class="left">American call</td>
+<td>35.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F38&exchange=OMFE">ORK3F38</a></td>
+<td class="left">American call</td>
+<td>38.00</td><td>20/06-2013</td>
+<td>11.00</td><td>13.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F41&exchange=OMFE">ORK3F41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>20/06-2013</td>
+<td>8.50</td><td>10.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F50&exchange=OMFE">ORK3F50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>20/06-2013</td>
+<td>1.30</td><td>1.55</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F47&exchange=OMFE">ORK3F47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>20/06-2013</td>
+<td>2.75</td><td>4.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3F44&exchange=OMFE">ORK3F44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>20/06-2013</td>
+<td>5.50</td><td>7.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3F44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G60&exchange=OMFE">ORK3G60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>18/07-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G55&exchange=OMFE">ORK3G55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>18/07-2013</td>
+<td>0.20</td><td>0.45</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G50&exchange=OMFE">ORK3G50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>18/07-2013</td>
+<td>1.70</td><td>1.95</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G41&exchange=OMFE">ORK3G41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>18/07-2013</td>
+<td>8.50</td><td>10.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G44&exchange=OMFE">ORK3G44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>18/07-2013</td>
+<td>5.60</td><td>7.10</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G47&exchange=OMFE">ORK3G47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>18/07-2013</td>
+<td>3.05</td><td>4.50</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3G65&exchange=OMFE">ORK3G65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>18/07-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3G65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I65&exchange=OMFE">ORK3I65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>19/09-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I60&exchange=OMFE">ORK3I60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>19/09-2013</td>
+<td>0.07</td><td>0.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I55&exchange=OMFE">ORK3I55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>19/09-2013</td>
+<td>0.60</td><td>0.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I50&exchange=OMFE">ORK3I50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>19/09-2013</td>
+<td>2.35</td><td>2.60</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I47&exchange=OMFE">ORK3I47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>19/09-2013</td>
+<td>3.60</td><td>5.10</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I44&exchange=OMFE">ORK3I44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>19/09-2013</td>
+<td>6.00</td><td>7.50</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I35&exchange=OMFE">ORK3I35</a></td>
+<td class="left">American call</td>
+<td>35.00</td><td>19/09-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I38&exchange=OMFE">ORK3I38</a></td>
+<td class="left">American call</td>
+<td>38.00</td><td>19/09-2013</td>
+<td>11.25</td><td>13.50</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3I41&exchange=OMFE">ORK3I41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>19/09-2013</td>
+<td>8.75</td><td>10.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3I41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L35&exchange=OMFE">ORK3L35</a></td>
+<td class="left">American call</td>
+<td>35.00</td><td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L65&exchange=OMFE">ORK3L65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>19/12-2013</td>
+<td>0.06</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L38&exchange=OMFE">ORK3L38</a></td>
+<td class="left">American call</td>
+<td>38.00</td><td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L41&exchange=OMFE">ORK3L41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>19/12-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L44&exchange=OMFE">ORK3L44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>19/12-2013</td>
+<td>6.60</td><td>8.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L47&exchange=OMFE">ORK3L47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>19/12-2013</td>
+<td>4.40</td><td>5.90</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L60&exchange=OMFE">ORK3L60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>19/12-2013</td>
+<td>0.35</td><td>0.55</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L55&exchange=OMFE">ORK3L55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>19/12-2013</td>
+<td>1.20</td><td>1.45</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3L50&exchange=OMFE">ORK3L50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>19/12-2013</td>
+<td>3.20</td><td>3.45</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3L50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C65&exchange=OMFE">ORK4C65</a></td>
+<td class="left">American call</td>
+<td>65.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C38&exchange=OMFE">ORK4C38</a></td>
+<td class="left">American call</td>
+<td>38.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C41&exchange=OMFE">ORK4C41</a></td>
+<td class="left">American call</td>
+<td>41.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C44&exchange=OMFE">ORK4C44</a></td>
+<td class="left">American call</td>
+<td>44.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C47&exchange=OMFE">ORK4C47</a></td>
+<td class="left">American call</td>
+<td>47.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C60&exchange=OMFE">ORK4C60</a></td>
+<td class="left">American call</td>
+<td>60.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C55&exchange=OMFE">ORK4C55</a></td>
+<td class="left">American call</td>
+<td>55.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4C50&exchange=OMFE">ORK4C50</a></td>
+<td class="left">American call</td>
+<td>50.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4C50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<th class="top" colspan="9">American put</th>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q65&exchange=OMFE">ORK3Q65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>16/05-2013</td>
+<td>14.00</td><td>16.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q60&exchange=OMFE">ORK3Q60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>16/05-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q55&exchange=OMFE">ORK3Q55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>16/05-2013</td>
+<td>4.30</td><td>5.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q50&exchange=OMFE">ORK3Q50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>16/05-2013</td>
+<td>0.85</td><td>1.10</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q47&exchange=OMFE">ORK3Q47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>16/05-2013</td>
+<td>0.07</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q38&exchange=OMFE">ORK3Q38</a></td>
+<td class="left">American put</td>
+<td>38.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q41&exchange=OMFE">ORK3Q41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q44&exchange=OMFE">ORK3Q44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R65&exchange=OMFE">ORK3R65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>20/06-2013</td>
+<td>14.00</td><td>16.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R60&exchange=OMFE">ORK3R60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>20/06-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R55&exchange=OMFE">ORK3R55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>20/06-2013</td>
+<td>4.30</td><td>5.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R32&exchange=OMFE">ORK3R32</a></td>
+<td class="left">American put</td>
+<td>32.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R32.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R35&exchange=OMFE">ORK3R35</a></td>
+<td class="left">American put</td>
+<td>35.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R38&exchange=OMFE">ORK3R38</a></td>
+<td class="left">American put</td>
+<td>38.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>0.15</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R41&exchange=OMFE">ORK3R41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R50&exchange=OMFE">ORK3R50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>20/06-2013</td>
+<td>1.20</td><td>1.45</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R47&exchange=OMFE">ORK3R47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>20/06-2013</td>
+<td>0.25</td><td>0.45</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R44&exchange=OMFE">ORK3R44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>20/06-2013</td>
+<td>0.06</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S60&exchange=OMFE">ORK3S60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>18/07-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S55&exchange=OMFE">ORK3S55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>18/07-2013</td>
+<td>4.40</td><td>5.90</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S50&exchange=OMFE">ORK3S50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>18/07-2013</td>
+<td>1.55</td><td>1.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S41&exchange=OMFE">ORK3S41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>18/07-2013</td>
+<td>0.02</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S44&exchange=OMFE">ORK3S44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>18/07-2013</td>
+<td>0.15</td><td>0.35</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S47&exchange=OMFE">ORK3S47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>18/07-2013</td>
+<td>0.50</td><td>0.80</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S65&exchange=OMFE">ORK3S65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>18/07-2013</td>
+<td>14.00</td><td>16.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U65&exchange=OMFE">ORK3U65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>19/09-2013</td>
+<td>13.75</td><td>16.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U60&exchange=OMFE">ORK3U60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>19/09-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U55&exchange=OMFE">ORK3U55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>19/09-2013</td>
+<td>4.70</td><td>6.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U50&exchange=OMFE">ORK3U50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>19/09-2013</td>
+<td>2.05</td><td>2.30</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U47&exchange=OMFE">ORK3U47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>19/09-2013</td>
+<td>1.00</td><td>1.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U44&exchange=OMFE">ORK3U44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>19/09-2013</td>
+<td>0.40</td><td>0.60</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U35&exchange=OMFE">ORK3U35</a></td>
+<td class="left">American put</td>
+<td>35.00</td><td>19/09-2013</td>
+<td>&nbsp;</td>
+<td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U38&exchange=OMFE">ORK3U38</a></td>
+<td class="left">American put</td>
+<td>38.00</td><td>19/09-2013</td>
+<td>0.04</td><td>0.20</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U41&exchange=OMFE">ORK3U41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>19/09-2013</td>
+<td>0.10</td><td>0.25</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X35&exchange=OMFE">ORK3X35</a></td>
+<td class="left">American put</td>
+<td>35.00</td><td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>0.40</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X35.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X65&exchange=OMFE">ORK3X65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X38&exchange=OMFE">ORK3X38</a></td>
+<td class="left">American put</td>
+<td>38.00</td><td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>0.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X41&exchange=OMFE">ORK3X41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>19/12-2013</td>
+<td>0.35</td><td>0.60</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X44&exchange=OMFE">ORK3X44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>19/12-2013</td>
+<td>0.80</td><td>1.00</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X47&exchange=OMFE">ORK3X47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>19/12-2013</td>
+<td>1.50</td><td>1.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X60&exchange=OMFE">ORK3X60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>19/12-2013</td>
+<td>9.25</td><td>10.75</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X55&exchange=OMFE">ORK3X55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>19/12-2013</td>
+<td>5.10</td><td>6.60</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X50&exchange=OMFE">ORK3X50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>19/12-2013</td>
+<td>2.65</td><td>2.90</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O65&exchange=OMFE">ORK4O65</a></td>
+<td class="left">American put</td>
+<td>65.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O65.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O38&exchange=OMFE">ORK4O38</a></td>
+<td class="left">American put</td>
+<td>38.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O38.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O41&exchange=OMFE">ORK4O41</a></td>
+<td class="left">American put</td>
+<td>41.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O41.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O44&exchange=OMFE">ORK4O44</a></td>
+<td class="left">American put</td>
+<td>44.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O44.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O47&exchange=OMFE">ORK4O47</a></td>
+<td class="left">American put</td>
+<td>47.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O47.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O60&exchange=OMFE">ORK4O60</a></td>
+<td class="left">American put</td>
+<td>60.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O60.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O55&exchange=OMFE">ORK4O55</a></td>
+<td class="left">American put</td>
+<td>55.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O55.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O50&exchange=OMFE">ORK4O50</a></td>
+<td class="left">American put</td>
+<td>50.00</td><td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O50.OMFE">Handle</a></td>
+</tr>
+<tr>
+<th class="top" colspan="9">Exchange traded notes</th>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=BULL-ORKLA-HA&exchange=OSE">BULL-ORKLA-HA</a></td>
+<td class="left">Exchange traded notes</td>
+<td>&nbsp;</td>
+<td>07/09-2019</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=BULL-ORKLA-HA.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=BEAR-ORKLA-HA&exchange=OSE">BEAR-ORKLA-HA</a></td>
+<td class="left">Exchange traded notes</td>
+<td>&nbsp;</td>
+<td>07/09-2019</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=BEAR-ORKLA-HA.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=BULL-ORK-X3-DNM&exchange=OSE">BULL-ORK-X3-DNM</a></td>
+<td class="left">Exchange traded notes</td>
+<td>&nbsp;</td>
+<td>26/03-2042</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=BULL-ORK-X3-DNM.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=BEAR-ORK-X3-DNM&exchange=OSE">BEAR-ORK-X3-DNM</a></td>
+<td class="left">Exchange traded notes</td>
+<td>&nbsp;</td>
+<td>26/03-2042</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=BEAR-ORK-X3-DNM.OSE">Handle</a></td>
+</tr>
+<tr>
+<th class="top" colspan="9">Futures</th>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3Q&exchange=OMFE">ORK3Q</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3Q.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT3Q&exchange=OMFE">ORKFUT3Q</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>16/05-2013</td>
+<td>49.50</td><td>50.40</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT3Q.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3R&exchange=OMFE">ORK3R</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>20/06-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3R.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT3R&exchange=OMFE">ORKFUT3R</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>20/06-2013</td>
+<td>49.65</td><td>50.50</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT3R.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3S&exchange=OMFE">ORK3S</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>18/07-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3S.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT3S&exchange=OMFE">ORKFUT3S</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>18/07-2013</td>
+<td>49.70</td><td>50.60</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT3S.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3U&exchange=OMFE">ORK3U</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>19/09-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3U.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT3U&exchange=OMFE">ORKFUT3U</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>19/09-2013</td>
+<td>49.85</td><td>50.70</td><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT3U.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK3X&exchange=OMFE">ORK3X</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK3X.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT3X&exchange=OMFE">ORKFUT3X</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>19/12-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT3X.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORK4O&exchange=OMFE">ORK4O</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORK4O.OMFE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKFUT4O&exchange=OMFE">ORKFUT4O</a></td>
+<td class="left">Futures</td>
+<td>&nbsp;</td>
+<td>20/03-2014</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKFUT4O.OMFE">Handle</a></td>
+</tr>
+<tr>
+<th class="top" colspan="9">Warrants</th>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKW12F49DNMX&exchange=OSE">ORKW12F49DNMX</a></td>
+<td class="left">Warrants</td>
+<td>49.70</td><td>15/06-2012</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKW12F49DNMX.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKW13Q40HA&exchange=OSE">ORKW13Q40HA</a></td>
+<td class="left">Warrants</td>
+<td>40.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKW13Q40HA.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKW13E52HA&exchange=OSE">ORKW13E52HA</a></td>
+<td class="left">Warrants</td>
+<td>52.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKW13E52HA.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKW13E48HA&exchange=OSE">ORKW13E48HA</a></td>
+<td class="left">Warrants</td>
+<td>48.00</td><td>16/05-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKW13E48HA.OSE">Handle</a></td>
+</tr>
+<tr>
+<td class="left"><a href="ppaper.php?paper=ORKW13F55DNM&exchange=OSE">ORKW13F55DNM</a></td>
+<td class="left">Warrants</td>
+<td>55.00</td><td>14/06-2013</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td class="left"><a href="https://www.netfonds.no/account/order.php?paper=ORKW13F55DNM.OSE">Handle</a></td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+
+</td>
+<td></td>
+</tr>
+<tr>
+<td class=bottomside><div></div></td>
+<td class=maincolumn>
+
+<div class="hend">
+<table class="bottomtable">
+<tr>
+<td>
+<span class="hbottommenu">
+<a href="layout.php">Utforming</a>&nbsp;|&nbsp;
+<a href="http://hopey.netfonds.no/optionName.php?underlying_paper=ORK&amp;underlying_exchange=OSE&amp;exchange=OMFE&amp;help=t">Hjelp</a>&nbsp;|&nbsp;
+<a href="http://hopey.netfonds.no/optionName.php?underlying_paper=ORK&amp;underlying_exchange=OSE&amp;exchange=OMFE&amp;layout=print">Utskrift</a>
+&nbsp;|&nbsp;<a href="https://www.netfonds.no/account/auth.php?goto=http%3A%2F%2Fhopey.netfonds.no%2Fderivative.php%3Funderlying_paper%3DORK%26amp%3Bunderlying_exchange%3DOSE%26amp%3Bexchange%3DOMFE">Bytt til sanntid</a></span>
+</td>
+<td class="hbottomlinestop">
+<span class="hbottomlinestop">
+Ingen �pne markeder</span>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+</td>
+<td class=bottomside><div></div></td>
+</tr>
+
+<tr>
+<td class=mainside></td>
+<td class=maincolumn>
+<div class="end-comstock">
+</div>
+</td>
+<td class=mainside></td>
+</tr>
+
+</table>
+
+
+</body>
+</html>
+
+<script  language="JavaScript" type="text/javascript">decorateSearch("papersearch");</script>

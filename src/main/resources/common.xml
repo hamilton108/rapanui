@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mail" class="rapanui.service.MailService">
+    </bean>
+
+    <bean id="dbService" class="rapanui.service.DbService">
+    </bean>
+
+    <bean id="contenthandler" class="netfondsrepos.contenthandler.DefaultContentHandler">
+    </bean>
+
+    <bean id="repos" class="critterrepos.models.impl.StockMarketReposImpl">
+        <property name="mybatisConfigFile" value="mybatis.conf.xml" />
+    </bean>
+
+    <bean id="etrade" class="netfondsrepos.repos.DefaultEtradeRepository">
+        <property name="downloader" ref="downloader" />
+        <property name="contentHandler" ref="contenthandler" />
+        <property name="stockMarketRepository" ref="repos"/>
+    </bean>
+
+    <bean id="cached-etrade" class="netfondsrepos.repos.ChachedEtradeReposImpl">
+        <property name="repos" ref="etrade" />
+    </bean>
+
+    <bean id="critterRepos" class="rapanui.repos.CritterRepos">
+        <property name="repos" ref="cached-etrade" />
+    </bean>
+
+    <bean id="htmlPageConsumer"  class="rapanui.service.HtmlPageConsumer">
+    </bean>
+
+    <bean id="downloadAspect" class="netfondsrepos.aspects.StoreDownloadedPageAspect"
+          factory-method="aspectOf">
+        <property name="htmlPageConsumer" ref="htmlPageConsumer"/>
+        <property name="htmlPageConsumer2" ref="htmlPageConsumer"/>
+    </bean>
+</beans>

@@ -1,0 +1,5 @@
+
+require 'java'
+Dir["./*.jar"].each { |jar| require jar }
+
+java_import

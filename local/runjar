@@ -1,0 +1,5 @@
+#!/bin/bash
+
+java -jar rapanui-1.0.jar "$@"
+
+exit 0

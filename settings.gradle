@@ -1,0 +1,4 @@
+includeFlat 'oahu'
+includeFlat 'critter-repos'
+//includeFlat 'vega'
+includeFlat 'netfonds-repos'

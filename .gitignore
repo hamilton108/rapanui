@@ -1,0 +1,14 @@
+.idea
+dbcp.properties
+netfonds.properties
+*.swp
+.gradle
+dist
+target/
+taiarapu-test.log
+build/
+feed/
+*.log
+*.iml
+out/
+tmp/
