@@ -18,4 +18,5 @@ public class DefaultRapanuiRunner extends AbstractRapanuiRunner {
                 .build();
         return job;
     }
+
 }

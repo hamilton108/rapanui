@@ -21,6 +21,7 @@ import java.util.Date;
 public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
     private int purchaseType;
     private boolean isTest;
+    private boolean sendMail;
     private MailService mail;
     private DbService dbService;
 
@@ -71,6 +72,7 @@ public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
     public void runWith(CmdLineValues opts) {
         try {
             setTest(opts.isTest());
+            setSendMail(opts.isMail());
             setPurchaseType(opts.getPurchaseType());
             Date fromTm = toDate(opts.getOpen());
             Date toTm = toDate(opts.getClose());
@@ -141,6 +143,15 @@ public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
 
     public void setDbService(DbService dbService) {
         this.dbService = dbService;
+    }
+
+    @Override
+    public boolean isSendMail() {
+        return sendMail;
+    }
+
+    public void setSendMail(boolean sendMail) {
+        this.sendMail = sendMail;
     }
 }
 

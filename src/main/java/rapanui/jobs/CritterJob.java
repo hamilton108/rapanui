@@ -43,9 +43,10 @@ public class CritterJob implements Job {
                     }
 
                     jobContext.getDbService().registerCritterSale(p,cr);
-
-                    String subject = String.format("Option sale %s",p.getOptionName());
-                    jobContext.getMail().sendMail(subject,"");
+                    if (jobContext.isSendMail()) {
+                        String subject = String.format("Option sale %s",p.getOptionName());
+                        jobContext.getMail().sendMail(subject,"Sold for you");
+                    }
                 }
             }
         }

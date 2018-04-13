@@ -179,11 +179,28 @@ task aopjar(type: Jar, dependsOn: compileJava) {
     //from("src/main/resources") include "*.xml"
 }
 
+def symlinkResource(resourceName,isLocal) {
+    def loc = isLocal == true ? "local" : "src/main/resources"
+    def fromPath = "../${loc}/${resourceName}"
+    def syml = "dist/${resourceName}"
+
+    ant.symlink(resource: fromPath, link: syml)
+}
 
 task setupDist << {
-    ant.symlink(resource: "../local/log4j.xml", link: "dist/log4j.xml")
-    ant.symlink(resource: "../local/mybatis.conf.xml", link: "dist/mybatis.conf.xml")
-    ant.symlink(resource: "../local/critters-dbcp.properties", link: "dist/cirtters-dbcp.properties")
-    ant.symlink(resource: "../local/rapanui.xml", link: "dist/rapanui.xml")
+    /*
+    ant.symlink(resource: "../src/main/resources/log4j.xml", link: "dist/log4j.xml")
+    ant.symlink(resource: "../src/main/resources/mybatis.conf.xml", link: "dist/mybatis.conf.xml")
+    ant.symlink(resource: "../src/main/resources/rapanui.xml", link: "dist/rapanui.xml")
+    ant.symlink(resource: "../src/main/resources/rapanui-test.xml", link: "dist/rapanui-test.xml")
+    ant.symlink(resource: "../local/runjar", link: "dist/runjar")
+    ant.symlink(resource: "../local/critters-dbcp.properties", link: "dist/critters-dbcp.properties")
+    */
+    symlinkResource("log4j.xml",false)
+    symlinkResource("mybatis.conf.xml",false)
+    symlinkResource("rapanui.xml",false)
+    symlinkResource("rapanui-test.xml",false)
+    symlinkResource("runjar",true)
+    symlinkResource("critters-dbcp.properties",true)
 }
 

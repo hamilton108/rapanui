@@ -16,4 +16,5 @@ public interface RapanuiRunner {
     MailService getMail();
     DbService getDbService();
     boolean isTest();
+    boolean isSendMail();
 }

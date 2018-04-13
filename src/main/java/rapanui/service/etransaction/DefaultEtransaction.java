@@ -19,7 +19,7 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
     //region Interface ETransaction
     @Override
     public void sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) throws IOException {
-
+        //Page calcPage = checkCalcPage(purchase.getOptionName(),purchase.getDerivativePrice().get().
     }
     //endregion
 
@@ -35,8 +35,8 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
                 HtmlSubmitInput> inputs = inputsFor(orderPage,true);
 
         inputs.item1().setChecked(true);
-        inputs.item2().setAttribute("value", volume);
-        inputs.item3().setAttribute("value", price);
+        inputs.item2().setAttribute("value", new Double(volume).toString());
+        inputs.item3().setAttribute("value", new Double(price).toString());
         Page result = inputs.item4().click();
         return result;
     }
