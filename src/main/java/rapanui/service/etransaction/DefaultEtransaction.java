@@ -34,7 +34,11 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
                 HtmlTextInput,
                 HtmlSubmitInput> inputs = inputsFor(orderPage,true);
 
-        return null;
+        inputs.item1().setChecked(true);
+        inputs.item2().setAttribute("value", volume);
+        inputs.item3().setAttribute("value", price);
+        Page result = inputs.item4().click();
+        return result;
     }
 
     private Page getOrderPage(String optionTicker) throws IOException {

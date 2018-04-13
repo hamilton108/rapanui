@@ -10,6 +10,7 @@ import org.quartz.JobExecutionException;
 import rapanui.runner.RapanuiRunner;
 import rapanui.service.Mail;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CritterJob implements Job {
@@ -34,7 +35,12 @@ public class CritterJob implements Job {
                 ETransaction transaction = jobContext.getEtransaction(); //(ETransaction) jm.get("etransaction");
                 for (Critter cr : crits) {
 
-                    transaction.sellPurchase(p,cr,jobContext.isTest());
+                    try {
+                        transaction.sellPurchase(p,cr,jobContext.isTest());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        throw new JobExecutionException(e.getMessage());
+                    }
 
                     jobContext.getDbService().registerCritterSale(p,cr);
 
