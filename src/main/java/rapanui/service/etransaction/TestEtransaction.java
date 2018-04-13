@@ -7,7 +7,7 @@ import oahu.financial.html.ETransaction;
 public class TestEtransaction extends AbstractEtransaction implements ETransaction {
 
     @Override
-    public void sellPurchase(OptionPurchase purchase, Critter critter) {
+    public void sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) {
     }
 
 }

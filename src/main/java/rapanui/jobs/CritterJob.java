@@ -34,7 +34,7 @@ public class CritterJob implements Job {
                 ETransaction transaction = jobContext.getEtransaction(); //(ETransaction) jm.get("etransaction");
                 for (Critter cr : crits) {
 
-                    transaction.sellPurchase(p,cr);
+                    transaction.sellPurchase(p,cr,jobContext.isTest());
 
                     jobContext.getDbService().registerCritterSale(p,cr);
 
