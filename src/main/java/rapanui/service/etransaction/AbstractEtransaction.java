@@ -4,7 +4,7 @@ import oahu.financial.html.WebClientManager;
 import rapanui.service.MailService;
 
 public abstract class AbstractEtransaction {
-    protected WebClientManager webClientManager;
+    WebClientManager webClientManager;
 
     //region Properties
     public void setWebClientManager(WebClientManager webClientManager) {

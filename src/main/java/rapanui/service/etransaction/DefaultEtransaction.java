@@ -3,27 +3,57 @@ package rapanui.service.etransaction;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.html.*;
 import oahu.dto.Tuple4;
+import oahu.financial.DerivativePrice;
 import oahu.financial.OptionPurchase;
 import oahu.financial.critters.Critter;
 import oahu.financial.html.ETransaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DefaultEtransaction extends AbstractEtransaction implements ETransaction {
 
+    private static Logger log = LoggerFactory.getLogger("rapanui.service.etransaction");
 
     // url (str "https://www.netfonds.no/account/order.php?paper=" opname ".OMFE")]
 
     //region Interface ETransaction
     @Override
-    public void sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) throws IOException {
-        //Page calcPage = checkCalcPage(purchase.getOptionName(),purchase.getDerivativePrice().get().
+    public Optional<Page> sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) throws IOException {
+        Optional<DerivativePrice> price = purchase.getDerivativePrice();
+        if (price.isPresent())  {
+            Page calcPage = checkCalcPage(
+                    purchase.getOptionName(),
+                    price.get().getBuy(),
+                    critter.getSellVolume(),
+                    true);
+            Page confirmPage = confirmTransaction(calcPage);
+            log.info("Sold %d options of %s", purchase.getOptionName(), critter.getSellVolume());
+            return Optional.of(confirmPage);
+        }
+        else {
+            log.warn("Derivative price not present for {}", purchase.getOptionName());
+            return Optional.empty();
+        }
     }
     //endregion
 
     //region Local Stuff
+
+    private Page confirmTransaction(Page page) throws IOException {
+        /*
+        (defn confirm-transaction [page]
+        (let [order-form ^HtmlForm (.getElementById page "order_form")
+        order-button ^HtmlSubmitInput (.getInputByName order-form "confirm")]
+        (.click order-button)))
+        */
+        HtmlForm orderForm = (HtmlForm)((HtmlPage)page).getElementById("confirm");
+        return orderForm.click();
+    }
 
     private Page checkCalcPage(String optionTicker, double price, double volume, boolean isSell) throws IOException {
 
@@ -47,7 +77,6 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
     }
 
     private String urlFor(String optionTicker) {
-        //url (str "https://www.netfonds.no/account/order.php?paper=" opname ".OMFE")]
         return String.format("https://www.netfonds.no/account/order.php?paper=%s.OMFE", optionTicker);
     }
 

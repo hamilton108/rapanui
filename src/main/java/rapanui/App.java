@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class App {
     private static boolean DEBUG = false;
-    private static Logger log = LoggerFactory.getLogger(App.class.getPackage().getName());
+    private static Logger log = LoggerFactory.getLogger("rapanui");
 
     public static void main(String[] args) {
         try {
