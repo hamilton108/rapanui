@@ -6,12 +6,13 @@ import critterrepos.beans.options.OptionSaleBean;
 import critterrepos.models.mybatis.CritterMapper;
 import critterrepos.utils.MyBatisUtils;
 import oahu.financial.DerivativePrice;
+import oahu.financial.OptionPurchase;
 import oahu.financial.critters.Critter;
 
 import java.util.Optional;
 
 public class DbService {
-    public void registerCritterSale(OptionPurchaseBean purchase, Critter critter) {
+    public void registerCritterSale(OptionPurchase purchase, Critter critter) {
         Optional<DerivativePrice> price = purchase.getDerivativePrice();
         if (price.isPresent())  {
             OptionSaleBean sale = new OptionSaleBean(
