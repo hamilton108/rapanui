@@ -21,7 +21,9 @@ public class DbService {
             MyBatisUtils.withSessionConsumer((session) -> {
                 CritterMapper mapper = session.getMapper(CritterMapper.class);
                 mapper.insertCritterSale(sale);
-                mapper.registerCritterClosedWithSale((CritterBean)critter);
+                CritterBean critterBean = (CritterBean)critter;
+                critterBean.setSaleId(sale.getOid());
+                mapper.registerCritterClosedWithSale(critterBean);
                 critter.setStatus(9);
                 if (purchase.isFullySold()) {
                     mapper.registerPurchaseFullySold(purchase);
