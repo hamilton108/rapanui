@@ -32,7 +32,7 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
                     critter.getSellVolume(),
                     true);
             Page confirmPage = confirmTransaction(calcPage);
-            log.info("Sold %d options of %s", purchase.getOptionName(), critter.getSellVolume());
+            log.info("Sold %d options of %s", critter.getSellVolume(), purchase.getOptionName());
             return Optional.of(confirmPage);
         }
         else {
@@ -65,8 +65,8 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
                 HtmlSubmitInput> inputs = inputsFor(orderPage,true);
 
         inputs.item1().setChecked(true);
-        inputs.item2().setAttribute("value", new Double(volume).toString());
-        inputs.item3().setAttribute("value", new Double(price).toString());
+        inputs.item2().setAttribute("value", Double.toString(volume));
+        inputs.item3().setAttribute("value", Double.toString(price));
         Page result = inputs.item4().click();
         return result;
     }
