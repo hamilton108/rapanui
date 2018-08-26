@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Properties;
 
 public class App {
-    private static boolean DEBUG = false;
     private static Logger log = LoggerFactory.getLogger("rapanui");
 
     public static void main(String[] args) {
         try {
+            boolean DEBUG = false;
             if (DEBUG) {
                 mainDebug(args);
             } else {
@@ -41,26 +41,30 @@ public class App {
         ApplicationContext factory = new ClassPathXmlApplicationContext(opts.getXml());
 
         if (opts.isCritterInfo()) {
-            CritterRepos critters = factory.getBean("critterRepos", CritterRepos.class);
-            List<OptionPurchaseBean> purchases = critters.fetchCritters(opts.getPurchaseType());
-            for (OptionPurchaseBean p : purchases) {
-                p.inspect();
-            }
-            System.out.println("\n\n******************************** Critters End ********************************");
-
+            critterInfo(factory, opts.getPurchaseType());
         } else {
             RapanuiRunner runner;
             runner = factory.getBean("runner", RapanuiRunner.class);
             //runner.setPurchaseType(opts.getPurchaseType());
             runner.runWith(opts);
         }
-
     }
 
     private static void mainDebug(String[] args) throws CmdLineException {
-        initLog4j();
-        System.out.println("\n\n******************************** Critters End ********************************");
-        log.info("Hello from logger {1} {0}", 34, "Im last");
+        //initLog4j();
+        ApplicationContext factory = new ClassPathXmlApplicationContext("rapanui.xml");
+        critterInfo(factory, 11);
+    }
+
+    private static void critterInfo(ApplicationContext factory, int purchaseType) {
+        System.out.println("\n\n******************** Critter Info ******************** ");
+        CritterRepos critters = factory.getBean("critterRepos", CritterRepos.class);
+        List<OptionPurchaseBean> purchases = critters.fetchCritters(purchaseType);
+        System.out.println(String.format("Number of purchases: %d", purchases.size()));
+        for (OptionPurchaseBean p : purchases) {
+            p.inspect();
+        }
+        System.out.println("\n\n******************** Critters End ******************** ");
     }
 
 
