@@ -15,11 +15,7 @@
         </layout>
     </appender>
 
-    <logger name="maunaloa.aspects">
-        <level value="INFO" />
-        <appender-ref ref="CA" />
-    </logger>
-    <logger name="maunaloa.domain">
+    <logger name="critterrepos" additivity="false">
         <level value="INFO" />
         <appender-ref ref="CA" />
     </logger>

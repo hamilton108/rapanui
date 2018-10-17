@@ -30,12 +30,12 @@
         <property name="repos" ref="cached-etrade" />
     </bean>
 
-    <bean id="htmlPageConsumer"  class="rapanui.service.HtmlPageConsumer">
-    </bean>
+    <!--<bean id="htmlPageConsumer"  class="rapanui.service.HtmlPageConsumer">-->
+    <!--</bean>-->
 
-    <bean id="downloadAspect" class="netfondsrepos.aspects.StoreDownloadedPageAspect"
-          factory-method="aspectOf">
-        <property name="htmlPageConsumer" ref="htmlPageConsumer"/>
-        <property name="htmlPageConsumer2" ref="htmlPageConsumer"/>
-    </bean>
+    <!--<bean id="downloadAspect" class="netfondsrepos.aspects.StoreDownloadedPageAspect"-->
+          <!--factory-method="aspectOf">-->
+        <!--<property name="htmlPageConsumer" ref="htmlPageConsumer"/>-->
+        <!--<property name="htmlPageConsumer2" ref="htmlPageConsumer"/>-->
+    <!--</bean>-->
 </beans>
