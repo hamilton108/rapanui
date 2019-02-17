@@ -2,6 +2,7 @@ package rapanui.runner.impl;
 
 import oahu.financial.html.ETransaction;
 import oahu.financial.repository.ChachedEtradeRepository;
+import oahu.financial.repository.EtradeRepository;
 import org.quartz.*;
 import rapanui.repos.CritterRepos;
 import rapanui.runner.RapanuiRunner;
@@ -29,7 +30,7 @@ public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
 
     private CritterRepos critterRepos;
 
-    private ChachedEtradeRepository etradeRepository;
+    private EtradeRepository etradeRepository;
 
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm");
 
@@ -43,11 +44,11 @@ public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
     }
 
     @Override
-    public ChachedEtradeRepository getEtradeRepository() {
+    public EtradeRepository getEtradeRepository() {
         return etradeRepository;
     }
 
-    public void setEtradeRepository(ChachedEtradeRepository repos) {
+    public void setEtradeRepository(EtradeRepository repos) {
         this.etradeRepository = repos;
     }
 

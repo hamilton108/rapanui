@@ -36,7 +36,7 @@ public class CmdLineValues {
     @Option(name = "-C", aliases = { "--critter-info" }, required = false, usage = "Print critter info (with purchase type from -p) and quit.")
     private boolean critterInfo = false;
     @Option(name = "-p", aliases = { "--purchase-type" }, required = false, usage = "Purchase type [11: paper, 3: real time].")
-    private int purchaseType = 3;
+    private int purchaseType = 11;
     @Option(name = "-i", aliases = { "--interval" }, required = false, usage = "Check time interval (minutes.")
     private int interval = 10;
 

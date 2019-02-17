@@ -25,7 +25,7 @@
 
     <bean id="runner" class="rapanui.runner.impl.DefaultRapanuiRunner">
         <property name="critterRepos" ref="critterRepos" />
-        <property name="etradeRepository" ref="cached-etrade" />
+        <property name="etradeRepository" ref="etrade" />
         <property name="etransaction" ref="etransaction" />
         <property name="mail" ref="mail" />
         <property name="dbService" ref="dbService" />

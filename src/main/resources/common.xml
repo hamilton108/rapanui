@@ -16,18 +16,14 @@
         <property name="mybatisConfigFile" value="mybatis.conf.xml" />
     </bean>
 
-    <bean id="etrade" class="netfondsrepos.repos.DefaultEtradeRepository">
+    <bean id="etrade" class="netfondsrepos.repos.EtradeRepository2">
         <property name="downloader" ref="downloader" />
-        <property name="contentHandler" ref="contenthandler" />
         <property name="stockMarketRepository" ref="repos"/>
     </bean>
 
-    <bean id="cached-etrade" class="netfondsrepos.repos.ChachedEtradeReposImpl">
-        <property name="repos" ref="etrade" />
-    </bean>
 
     <bean id="critterRepos" class="rapanui.repos.CritterRepos">
-        <property name="repos" ref="cached-etrade" />
+        <property name="etradeRepository" ref="etrade" />
     </bean>
 
     <!--<bean id="htmlPageConsumer"  class="rapanui.service.HtmlPageConsumer">-->

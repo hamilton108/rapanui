@@ -36,6 +36,7 @@ public class App {
     private static void mainProd(String[] args) throws CmdLineException {
         initLog4j();
         CmdLineValues opts = new CmdLineValues(args);
+
         log.info(opts.toString());
 
         ApplicationContext factory = new ClassPathXmlApplicationContext(opts.getXml());
