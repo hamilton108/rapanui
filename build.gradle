@@ -79,6 +79,13 @@ dependencies {
     aspectjTask "org.aspectj:aspectjrt:$aspectjVersion"
     aspectjTask "org.aspectj:aspectjweaver:$aspectjVersion"
     aspectjTask "org.aspectj:aspectjtools:$aspectjVersion"
+    
+    //------------------- test -------------------
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
+    //testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+    testCompile "org.assertj:assertj-core:$assertjVersion"
 
 }
 
