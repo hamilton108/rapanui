@@ -1,10 +1,11 @@
 package rapanui.service.etransaction;
 
+import com.gargoylesoftware.htmlunit.Page;
 import oahu.financial.html.WebClientManager;
 import rapanui.service.MailService;
 
 public abstract class AbstractEtransaction {
-    WebClientManager webClientManager;
+    WebClientManager<Page> webClientManager;
 
     //region Properties
     public void setWebClientManager(WebClientManager webClientManager) {

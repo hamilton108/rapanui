@@ -8,9 +8,7 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import rapanui.runner.RapanuiRunner;
-import rapanui.service.Mail;
 
-import java.io.IOException;
 import java.util.List;
 
 public class CritterJob implements Job {
@@ -37,7 +35,7 @@ public class CritterJob implements Job {
 
                     try {
                         transaction.sellPurchase(p,cr,jobContext.isTest());
-                    } catch (IOException e) {
+                    } catch (RuntimeException e) {
                         e.printStackTrace();
                         throw new JobExecutionException(e.getMessage());
                     }

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class DefaultEtransaction extends AbstractEtransaction implements ETransaction {
+public class DefaultEtransaction extends AbstractEtransaction implements ETransaction<Page> {
 
     private static Logger log = LoggerFactory.getLogger("rapanui.service.etransaction");
 
@@ -23,17 +23,22 @@ public class DefaultEtransaction extends AbstractEtransaction implements ETransa
 
     //region Interface ETransaction
     @Override
-    public Optional<Page> sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) throws IOException {
+    public Optional<Page> sellPurchase(OptionPurchase purchase, Critter critter, boolean isTestRun) {
         Optional<DerivativePrice> price = purchase.getDerivativePrice();
         if (price.isPresent())  {
-            Page calcPage = checkCalcPage(
-                    purchase.getOptionName(),
-                    price.get().getBuy(),
-                    critter.getSellVolume(),
-                    true);
-            Page confirmPage = confirmTransaction(calcPage);
-            log.info("Sold %d options of %s", critter.getSellVolume(), purchase.getOptionName());
-            return Optional.of(confirmPage);
+            try {
+                Page calcPage = checkCalcPage(
+                        purchase.getOptionName(),
+                        price.get().getBuy(),
+                        critter.getSellVolume(),
+                        true);
+                Page confirmPage = confirmTransaction(calcPage);
+                log.info("Sold %d options of %s", critter.getSellVolume(), purchase.getOptionName());
+                return Optional.of(confirmPage);
+            }
+            catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         else {
             log.warn("Derivative price not present for {}", purchase.getOptionName());
