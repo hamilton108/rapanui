@@ -1,17 +1,49 @@
 package rapanui.service;
 
-import critterrepos.beans.critters.CritterBean;
 import critterrepos.beans.options.OptionPurchaseBean;
 import critterrepos.beans.options.OptionSaleBean;
-import critterrepos.models.mybatis.CritterMapper;
-import critterrepos.utils.MyBatisUtils;
+import critterrepos.mybatis.CritterMapper;
 import oahu.financial.DerivativePrice;
 import oahu.financial.OptionPurchase;
 import oahu.financial.critters.Critter;
+import oahu.financial.repository.EtradeRepository;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
+@Component
 public class DbService {
+    private SqlSession session;
+    private EtradeRepository etradeRepository;
+
+    List<OptionPurchaseBean> critters;
+
+    @Autowired
+    public void setSession(SqlSession session) {
+        this.session = session;
+    }
+
+    @Autowired
+    public void setEtradeRepository(EtradeRepository etradeRepository) {
+        this.etradeRepository = etradeRepository;
+    }
+
+    public List<OptionPurchaseBean> fetchCritters(int purchaseType) {
+        if (critters == null) {
+            List<OptionPurchaseBean> result =
+                    session.getMapper(CritterMapper.class).activePurchasesAll(purchaseType);
+
+            for (OptionPurchaseBean critter : result) {
+                critter.setRepository(etradeRepository);
+            }
+            critters = result;
+        }
+        return critters;
+    }
+
     public void registerCritterSale(OptionPurchase purchase, Critter critter) {
         Optional<DerivativePrice> price = purchase.getDerivativePrice();
         if (price.isPresent())  {
@@ -19,6 +51,7 @@ public class DbService {
                     purchase.getOid(),
                     price.get().getBuy(),
                     critter.getSellVolume());
+            /*
             MyBatisUtils.withSessionConsumer((session) -> {
                 CritterMapper mapper = session.getMapper(CritterMapper.class);
                 mapper.insertCritterSale(sale);
@@ -30,8 +63,11 @@ public class DbService {
                     mapper.registerPurchaseFullySold(purchase);
                 }
             });
+
+             */
         }
     }
+
 }
 
 /*

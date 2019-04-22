@@ -1,10 +1,8 @@
 package rapanui.runner.impl;
 
 import oahu.financial.html.ETransaction;
-import oahu.financial.repository.ChachedEtradeRepository;
 import oahu.financial.repository.EtradeRepository;
 import org.quartz.*;
-import rapanui.repos.CritterRepos;
 import rapanui.runner.RapanuiRunner;
 import rapanui.runner.ShutDownScheduler;
 import rapanui.service.CmdLineValues;
@@ -28,18 +26,18 @@ public abstract  class AbstractRapanuiRunner implements RapanuiRunner {
 
     private ETransaction etransaction;
 
-    private CritterRepos critterRepos;
+    private DbService critterRepos;
 
     private EtradeRepository etradeRepository;
 
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm");
 
-    public void setCritterRepos(CritterRepos critterRepos) {
+    public void setCritterRepos(DbService critterRepos) {
         this.critterRepos = critterRepos;
     }
 
     @Override
-    public CritterRepos getCritterRepos() {
+    public DbService getCritterRepos() {
         return critterRepos;
     }
 
