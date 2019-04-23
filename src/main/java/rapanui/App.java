@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import rapanui.runner.RapanuiRunner;
 import rapanui.service.CmdLineValues;
 import rapanui.service.DbService;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @ComponentScan({
         "critterrepos.models.impl"
         , "rapanui.service"
+        , "rapanui.runner"
         , "oahu.properties"
         , "netfondsrepos.repos"
         , "netfondsrepos.downloader"
@@ -29,10 +31,10 @@ import java.util.List;
 })
 public class App implements CommandLineRunner {
     private static Logger log = LoggerFactory.getLogger("rapanui");
-    private ApplicationContext context;
+    private final ApplicationContext context;
 
     @Autowired
-    public void setContext(ApplicationContext context) {
+    public App(ApplicationContext context) {
         this.context = context;
     }
 
@@ -59,17 +61,12 @@ public class App implements CommandLineRunner {
 
         log.info(opts.toString());
 
-        critterInfo(opts.getPurchaseType());
-
         if (opts.isCritterInfo()) {
             critterInfo(opts.getPurchaseType());
         } else {
-            /*
             RapanuiRunner runner;
-            runner = factory.getBean("runner", RapanuiRunner.class);
+            runner = context.getBean(RapanuiRunner.class);
             runner.runWith(opts);
-
-             */
         }
 
     }

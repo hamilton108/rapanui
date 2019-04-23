@@ -3,9 +3,11 @@ package rapanui.runner.impl;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
+import org.springframework.stereotype.Component;
 import rapanui.jobs.CritterJob;
 import rapanui.jobs.CritterJobContext;
 
+@Component
 public class DefaultRapanuiRunner extends AbstractRapanuiRunner {
 
     @Override
