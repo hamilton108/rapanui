@@ -37,7 +37,6 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
     
 	//------------------- Spring -------------------
-	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testCompile "org.springframework.boot:spring-boot-starter-test"
