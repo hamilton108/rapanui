@@ -19,7 +19,7 @@
   (let [p (.purchasesWithSalesAll repos ptype status CALL)]
     (prn p)))
 
-(defrecord CrittersAdapter
-           ports/MaunaloaDB
-  (demo [this]
+(defrecord CrittersAdapter []
+  ports/DB
+  (demo [_]
     3))

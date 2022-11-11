@@ -1,8 +1,4 @@
-(ns rapanui.ports
-  (:gen-class))
-
-(defprotocol DB
-  (demo [this]))
+(ns rapanui.protocols.rules)
 
 (def  DFW       1)  ;Diff from watermark
 (def  DFW-PCT   2)  ; Diff from watermark percent
@@ -18,11 +14,6 @@
 (def  WM-SPOT   13)  ; Watermark spot
 (def  OPTION-PRICE  14)
 
-(defprotocol IPurchase
-  (strutMyStuff [this])
-  (whoami [this])
-  (applyCritters [this]))
-
 (defprotocol IDenyRule
   (whoamDny [this])
   (block [this args]))
@@ -35,4 +26,3 @@
   (strutMyStuff [this prefix])
   (applyRules [this args])
   (whoami [this]))
-
