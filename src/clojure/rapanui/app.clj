@@ -3,6 +3,7 @@
   (:import
    [java.time LocalTime])
   (:require
+   [rapanui.common :refer [with-session]]
    [clojure.tools.cli :refer [parse-opts]]))
 
 (defn block-task [test wait]
@@ -45,7 +46,9 @@
       (print (:summary pargs) "\n")
       ())))
 
-
+(defn demo []
+  (with-session critter.mybatis.CritterMapper 
+    (.activePurchasesWithCritters it 11)))
 
 ;; (defn -main [& args]
 ;;   (let [parsed-args-vec (cli args

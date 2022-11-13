@@ -1,5 +1,7 @@
 (ns rapanui.common
   (:import
+   (org.apache.ibatis.session SqlSession)
+   (critter.util MyBatisUtil)
    [java.time LocalTime]))
 
 ;(def ^:dynamic *test-run*)
@@ -25,3 +27,18 @@
 ;(defcurried add [a b c d] 
 ;  (+ a b c d)) 
 ;(add 1)
+
+(def not-nil? (comp not nil?))
+
+(defmacro with-session [mapper & body]
+  `(let [factory# (MyBatisUtil/getFactory)
+         session# ^SqlSession (.openSession factory#)
+         ~'it (.getMapper session# ~mapper)]
+     (try
+       (let [result# ~@body]
+         result#)
+       (finally
+         (if (not-nil? session#)
+           (do
+             (prn "Closing session")
+             (doto session# .commit .close)))))))

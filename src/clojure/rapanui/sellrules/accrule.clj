@@ -1,12 +1,10 @@
 (ns rapanui.sellrules.accrule
   (:import
-   [critter.critterrule Critter AcceptRule DenyRule])
-  ;(:use
-  ;  [clojure.core.match :only (match)])
+   [critter.critterrule  AcceptRule])
   (:require
    [clojure.core.match :refer [match]]
    ;[rapanui.service.logservice :as LOG]
-   [rapanui.ports :as R]))
+   [rapanui.protocols.rules :as R]))
 
 (defn pass [^AcceptRule this args]
   (let [rtyp (.getRtyp this)

@@ -3,21 +3,21 @@
   :url "http://example.com/FIXME"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[org.clojure/clojure "1.10.3"]
-                 [org.clojure/tools.cli "1.0.214"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/tools.cli "1.0.206"]
                  [org.mybatis/mybatis "3.5.9"]
                  [org.postgresql/postgresql "42.3.3"]
                  [org.jsoup/jsoup "1.11.3"]
                  [org.clojure/core.match "1.0.0"]
                 ;------------------ Local libs ------------------ 
-                 [rcstadheim/critter-repos "3.0.0-20221015.095752-16"]
-                 [rcstadheim/nordnet-repos "3.0.0-20221015.102119-9"]
-                 [rcstadheim/oahu "3.0.0-20220413.092122-1"]
-                 [rcstadheim/vega "3.0.0-20220413.092302-1"]
+                 [rcstadheim/critter-repos "3.0.0-20221111.131058-4"]
+                 [rcstadheim/nordnet-repos "3.0.0-20221111.131149-4"]
+                 [rcstadheim/oahu "3.0.0-20221111.131117-4"]
+                 [rcstadheim/vega "3.0.0-20221111.131134-4"]
                 ;------------------ Diverse ------------------ 
                  [net.sourceforge.htmlunit/htmlunit "2.44.0"
                   :exclusions [org.eclipse.jetty/jetty-http org.eclipse.jetty/jetty-io]]
-                 ;[prone "2020-01-17"]
+                 [prone "2020-01-17"]
                  [redis.clients/jedis "3.3.0" :exclusions [org.slf4j/slf4j-api]]
                  ;[cider/cider-nrepl "0.25.3" :exclusions [nrepl]]
                  ;[metosin/jsonista "0.2.5"]
