@@ -42,3 +42,17 @@
            (do
              (prn "Closing session")
              (doto session# .commit .close)))))))
+
+(defmacro nif-let
+  "Nested if-let. If all bindings are non-nil, execute body in the context of
+  those bindings.  If a binding is nil, evaluate its `else-expr` form and stop
+  there.  `else-expr` is otherwise not evaluated.
+
+  bindings* => binding-form else-expr"
+  [bindings & body]
+  (cond
+    (= (count bindings) 0) `(do ~@body)
+    (symbol? (bindings 0)) `(if-let ~(subvec bindings 0 2)
+                              (nif-let ~(subvec bindings 3) ~@body)
+                              ~(bindings 2))
+    :else (throw (IllegalArgumentException. "symbols only in bindings"))))

@@ -1,4 +1,4 @@
-(ns rapanui.protocols.derivatives)
+(ns rapanui.protocol.stockoption)
 
 (defprotocol IPurchase
   (strutMyStuff [this])

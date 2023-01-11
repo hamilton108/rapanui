@@ -1,4 +1,79 @@
-(ns rapanui.purchase)
+(ns rapanui.purchase
+  (:require
+   ;[rapanui.common :refer [nif-let]]
+   ;[tongariki.common :refer [nif-let]]
+   [rapanui.service.logservice :as LOG]
+   [rapanui.adapter.nordnetadapter :as N]
+   [rapanui.adapter.critteradapter :as C])
+  (:import
+   (critter.critterrule SellRuleArgs CritterEnum)
+   (critter.stockoption StockOptionPurchase)))
+
+(defn log-purchase  [^StockOptionPurchase this curlog msg]
+  (let [whoami (str "[Oid " (.getOid this) "] " (.getOptionName this))]
+    (curlog (str whoami msg))))
+
+
+(defn collect-args [ctx ^StockOptionPurchase bean]
+  (let [d-name (.getOptionName bean)
+        p-s ((:price-fn ctx) d-name)
+        price (.getPrice bean)
+        dfb (- price (:price p-s))
+        spot (:spot p-s)]
+    (LOG/info (str "[" d-name "] " p-s))
+    (SellRuleArgs. dfb 0.0 spot price)))
+
+
+  ;;  [cur-dx (.getDerivativePrice bean) :cur-dx
+  ;;   cur-d (if (.isPresent cur-dx)
+  ;;           (.get cur-dx)
+  ;;           nil) :cur-d
+  ;;   cur-wm (.getWatermark bean) :cur-vm
+  ;;   d-name (.getOptionName bean) :d-name
+  ;;   d-type (.getOptionType bean) :d-type
+  ;;   ticker (.getTicker bean) :ticker
+  ;;   cur-spotx (.getSpot bean) :cur-spotx
+  ;;   cur-spot (if (.isPresent cur-spotx)
+  ;;              (.get cur-spotx)
+  ;;              nil) :cur-spot
+  ;;   cur-buy (.getBuy cur-d) :cur-buy
+  ;;   price (.getPrice bean) :price]
+  ;;  (do
+  ;;    (LOG/info (str "[" d-name "] current buy: " cur-buy ", watermark: " cur-wm ", price: " price))
+  ;;    {:dfb (- price cur-buy)
+  ;;     :dfw (- cur-wm cur-buy)
+  ;;     :spot (.getCls cur-spot)
+  ;;     :opx price})))
+
+(defn critter-result [critter sell?]
+  (if (= sell? true)
+    (do
+      (.setStatusEnum critter CritterEnum/CRITTER_SOLD)
+      {:critter (.getOid critter)
+       :sell true
+       :volume (.getSellVolume critter)})
+    {:critter (.getOid critter)
+     :sell false}))
+
+(defn apply-args-critter [args critter]
+  (let [acc (.apply critter args)]
+    (critter-result critter acc)))
+
+(defn apply-critters-args [critters args]
+  (map (partial apply-args-critter args) critters))
+
+(defn apply-purchase  [ctx ^StockOptionPurchase bean]
+  (let [critters (filter #(= (.getStatusEnum %) CritterEnum/ACTIVE) (.getCritters bean))]
+    (if (empty? critters)
+      (log-purchase bean LOG/warn " was empty of critters!")
+      (let [args (collect-args ctx bean)]
+        (log-purchase bean LOG/info (str args))
+        (apply-critters-args critters args)))))
+
+(defn apply-purchases [ctx]
+  (let [pt (:purchase-type ctx)
+        purchases (C/fetch-purchases pt)]
+    (map (partial apply-purchase ctx) purchases)))
 
 ;; (extend-protocol R/IDenyRule
 ;;   DenyRuleBean

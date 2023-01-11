@@ -1,21 +1,18 @@
 (ns rapanui.service.logservice
   (:import
-    [org.apache.log4j Logger PropertyConfigurator]
-    [org.apache.commons.logging LogFactory]
-    [java.util Properties]))
+   (org.slf4j LoggerFactory)))
 
-;(def ^:dynamic *logger*)
 
-(def logger (Logger/getLogger  "rapanui"))
+(def logger (LoggerFactory/getLogger "rapanui.service.logservice"))
 
-(defn initLog4j []
-  (let [lf (LogFactory/getFactory)
-        props (Properties.)
-        clazz (.getClass props)
-        resource (.getResourceAsStream clazz "/log4j.xml")]
-    (.setAttribute lf "org.apache.commons.logging.Log" "org.apache.commons.logging.impl.NoOpLog")
-    (.load props resource)
-    (PropertyConfigurator/configure props)))
+;; (defn initLog4j []
+;;   (let [lf (LogFactory/getFactory)
+;;         props (Properties.)
+;;         clazz (.getClass props)
+;;         resource (.getResourceAsStream clazz "/log4j.xml")]
+;;     (.setAttribute lf "org.apache.commons.logging.Log" "org.apache.commons.logging.impl.NoOpLog")
+;;     (.load props resource)
+;;     (PropertyConfigurator/configure props)))
 
 
 (defn fatal [msg]
@@ -26,7 +23,6 @@
 
 (defn warn [msg]
   (.warn logger msg))
-
 
 (defn info [msg]
   (.info logger msg))

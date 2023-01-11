@@ -1,10 +1,12 @@
 (ns rapanui.app
   (:gen-class)
-  (:import
-   [java.time LocalTime])
   (:require
-   [rapanui.common :refer [with-session]]
-   [clojure.tools.cli :refer [parse-opts]]))
+   [rapanui.common :refer [with-session str->date]]
+   [rapanui.config :refer [get-context]]
+   [rapanui.purchase :as P]
+   [clojure.tools.cli :refer [parse-opts]])
+  (:import
+   [java.time LocalTime]))
 
 (defn block-task [test wait]
   (while (test)
@@ -33,22 +35,43 @@
 ;;    ;; A boolean option defaulting to nil
 ;;    ["-h" "--help"]])
 
-(def cli-opts
+(defn arg->int [arg]
+  (Integer/parseInt arg))
+
+(def opts
   [["-h" "--help"]
-   ["-q" "--query"]])
+   ["-p" "--profile PROFILE" "Profile: demo or prod" :parse-fn #(keyword %) :default "demo"]
+   ["-o" "--open OPEN" "Market opening time" :default "9:30"]
+   ["-c" "--close CLOSE" "Market closing time" :default "17:20"]
+   ["-i" "--interval INTERVAL" "Check time interval (minutes)" :parse-fn arg->int :default 10]])
+
+(defn check [arg opts]
+  (= (arg opts) true))
+
+(defn run [opts]
+  (let [opening-time (str->date (:open opts))
+        closing-time (str->date (:close opts))
+        interval (* 60000 (:interval opts))
+        profile (:profile opts)
+        ctx (get-context (:profile opts))]
+    (prn ctx)
+    (prn (class profile))))
 
 (defn -main [& args]
-  (let [pargs (parse-opts args cli-opts)
-        opts (:options pargs)
-        check-arg (fn [arg] (= (arg opts) true))]
+  (let [pargs (parse-opts args opts)
+        opts (:options pargs)]
     (prn opts)
-    (if (check-arg :help)
+    (if (check :help opts)
       (print (:summary pargs) "\n")
-      ())))
+      (run opts))))
 
 (defn demo []
-  (with-session critter.mybatis.CritterMapper 
+  (with-session critter.mybatis.CritterMapper
     (.activePurchasesWithCritters it 11)))
+
+(defn demo2 []
+  (let [ctx {:purchase-type 11}]
+    (P/apply-purchases ctx)))
 
 ;; (defn -main [& args]
 ;;   (let [parsed-args-vec (cli args
