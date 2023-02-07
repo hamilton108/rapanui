@@ -13,7 +13,6 @@
                  [ch.qos.logback/logback-classic "1.2.10"]
                 ;------------------ Local libs ------------------ 
                  [rcstadheim/critter-repos "${critter}"]
-                 [rcstadheim/nordnet-repos "${nordnet}"]
                  [rcstadheim/oahu "${oahu}"]
                  [rcstadheim/vega "${vega}"]
                 ;------------------ Jackson ------------------ 

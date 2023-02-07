@@ -8,7 +8,7 @@
 
 ;(def ^:dynamic *factory*)
 
-(defn str->date [arg]
+(defn str->time [arg]
   (if-let [v (re-find #"(\d+):(\d+)" arg)]
     (let [hours (nth v 1)
           minutes (nth v 2)]

@@ -20,13 +20,8 @@
     :test (LocalDate/of 2022 5 25)
     :demo (LocalDate/of 2022 10 17)))
 
-
-;; (defn etrade [ct]
-;;   (let [calc (BlackScholes.)]
-;;     (StockOptionParser3. calc (redis ct) (repos ct) (cur-date ct))))
-
 (defn get-context [ct]
-  (let [service "http://localhost:8080"]
+  (let [service "http://localhost:8082"]
     (match ct
       :prod
       {:purchase-type 4
@@ -36,4 +31,4 @@
        :price-fn (partial D/fetch-stockoption-price-stub service)}
       :demo
       {:purchase-type 11
-       :price-fn (partial D/fetch-stockoption-price-stub service)})))
+       :price-fn (partial D/fetch-stockoption-price-demo service)})))

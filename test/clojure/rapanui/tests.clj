@@ -6,7 +6,7 @@
    [rapanui.purchase :as P])
   (:import
    (critter.critterrule
-    Critter AcceptRule RuleTypeEnum)
+    Critter AcceptRule SellRuleArgs CritterEnum RuleTypeEnum)
    (critter.stockoption StockOptionPurchase)))
 
 
@@ -34,29 +34,47 @@
       (.setName "Critter-1")
       (.setStatus 7)
       (.setSellVolume 10)
-      (.setPurchaseId 1)
+      (.setPurchaseId 14)
       (.setAcceptRules (create-accrules)))
     [critter]))
 
-(defn create-purchase []
+(defn create-purchase [price]
   (let [p (StockOptionPurchase.)]
     (doto p
-      (.setOid 1)
+      (.setOid 14)
       (.setTicker "YAR")
       (.setOptionName "YAR2F470")
       (.setStatus 1)
       (.setVolume 20)
       (.setSpotAtPurchase 34.7)
       (.setBuyAtPurchase 12.0)
-      (.setPrice 12.8)
+      (.setPrice price)
       (.setCritters (create-critters)))
     p))
 
+(deftest test-acc-rule
+  (let [acc (first (create-accrules))
+        args (SellRuleArgs. 1.0 0.0 100.0 12.0)
+        acc (.pass acc args)]
+    (is (= acc false))))
+
 (deftest test-stock-option-purchase
-  (let [p (create-purchase)
+  (let [p (create-purchase 12.8)
         ctx (get-context :test)
         result (P/apply-purchase ctx p)
+        ;result2 (P/apply-purchase ctx p)
         critter (first (.getCritters p))]
     (is (not-nil? result))
     (prn result)
-    (is (= (first result) (P/critter-result critter true)))))
+    (is (= CritterEnum/CRITTER_SOLD (.getStatusEnum critter)))
+    (is (= (first result) {:critter 1, :sell true, :volume 10, :purchase-id 14}))
+    (let [result2 (P/apply-purchase ctx p)]
+      (is (nil? result2)))))
+
+
+(deftest collect-args-test
+  (let [p (create-purchase 10.4)
+        ctx (get-context :test)
+        args (P/collect-args ctx p)
+        expected (SellRuleArgs. 0.2 0.0 30.4 10.40)]
+    (is (= expected args))))

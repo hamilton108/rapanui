@@ -22,4 +22,8 @@
   {:price 10.2
    :spot 30.4})
 
+(defn fetch-stockoption-price-demo [_ _]
+  {:price 3.2
+   :spot 30.4})
+
 (def demo (partial fetch-stockoption-price "http://localhost:8082"))

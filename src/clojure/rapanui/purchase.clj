@@ -1,18 +1,15 @@
 (ns rapanui.purchase
   (:require
-   ;[rapanui.common :refer [nif-let]]
-   ;[tongariki.common :refer [nif-let]]
    [rapanui.service.logservice :as LOG]
-   [rapanui.adapter.nordnetadapter :as N]
+   ;[rapanui.adapter.nordnetadapter :as N]
    [rapanui.adapter.critteradapter :as C])
   (:import
    (critter.critterrule SellRuleArgs CritterEnum)
    (critter.stockoption StockOptionPurchase)))
 
 (defn log-purchase  [^StockOptionPurchase this curlog msg]
-  (let [whoami (str "[Oid " (.getOid this) "] " (.getOptionName this))]
+  (let [whoami (str "[Oid " (.getOid this) "] " (.getOptionName this) " ")]
     (curlog (str whoami msg))))
-
 
 (defn collect-args [ctx ^StockOptionPurchase bean]
   (let [d-name (.getOptionName bean)
@@ -45,13 +42,14 @@
   ;;     :spot (.getCls cur-spot)
   ;;     :opx price})))
 
-(defn critter-result [critter sell?]
-  (if (= sell? true)
+(defn critter-result [critter sell]
+  (if (= sell true)
     (do
       (.setStatusEnum critter CritterEnum/CRITTER_SOLD)
       {:critter (.getOid critter)
        :sell true
-       :volume (.getSellVolume critter)})
+       :volume (.getSellVolume critter)
+       :purchase-id (.getPurchaseId critter)})
     {:critter (.getOid critter)
      :sell false}))
 
@@ -60,20 +58,24 @@
     (critter-result critter acc)))
 
 (defn apply-critters-args [critters args]
-  (map (partial apply-args-critter args) critters))
+  (let [result (map (partial apply-args-critter args) critters)]
+    (doseq [r result]
+      (LOG/info (str "result: " r)))
+    result))
 
 (defn apply-purchase  [ctx ^StockOptionPurchase bean]
   (let [critters (filter #(= (.getStatusEnum %) CritterEnum/ACTIVE) (.getCritters bean))]
     (if (empty? critters)
       (log-purchase bean LOG/warn " was empty of critters!")
       (let [args (collect-args ctx bean)]
-        (log-purchase bean LOG/info (str args))
+        (log-purchase bean LOG/info (str "args: " args))
         (apply-critters-args critters args)))))
 
 (defn apply-purchases [ctx]
   (let [pt (:purchase-type ctx)
         purchases (C/fetch-purchases pt)]
-    (map (partial apply-purchase ctx) purchases)))
+    (doseq [p purchases]
+      (apply-purchase ctx p))))
 
 ;; (extend-protocol R/IDenyRule
 ;;   DenyRuleBean
