@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# HASKELL_VER="rcs/haskell-pg:9.4.3-slim"
+HASKELL_VER="rcs/haskell-pg:9.4.3"
+ROOT="0"
+NETWORK="pgutil_lofsrud"
+
+
+usage()
+{
+cat << EOF
+usage: $0 options
+
+OPTIONS:
+   -h      Show this message
+   -v      Haskell image version. Default: $HASKELL_VER 
+   -r      Run as root
+   -n 	   Network name. Default: $NETWORK
+EOF
+}
+
+while getopts “hrv:n:” OPTION
+do
+     case $OPTION in
+        h)
+            usage
+            exit 1
+            ;;
+        r)
+            ROOT="1"
+            ;;
+        v)
+            HASKELL_VER=$OPTARG
+        ;;
+        n)
+            NETWORK=$OPTARG
+            ;;
+        ?)
+            usage
+            exit
+            ;;
+     esac
+done
+
+LOCAL_HOME="/home/rcs/opt"
+
+DOCKER_HOME="/home/rcs/opt"
+
+LOCAL_STACK="$LOCAL_HOME/.stack"
+
+
+if [ "$ROOT" = "1" ]; then
+  #docker run -it --rm --network $NETWORK -v /home/rcs/opt:/home/rcs/opt -v /home/rcs/opt/.stack:/root/.stack -w /home/rcs/opt $HASKELL_VER
+
+  docker run -it --rm --network $NETWORK -v $LOCAL_HOME:$DOCKER_HOME -v $LOCAL_HOME/.stack:/root/.stack -w $DOCKER_HOME $HASKELL_VER
+else
+  docker run --network $NETWORK --user $(id -u):$(id -g) -it --rm -v $LOCAL_HOME:$DOCKER_HOME -v $LOCAL_HOME/.stack:/root/.stack -w $DOCKER_HOME $HASKELL_VER
+fi
+
+echo $HASKELL_VER
+
+exit 0
