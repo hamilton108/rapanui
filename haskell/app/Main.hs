@@ -1,10 +1,43 @@
 {-# LANGUAGE NamedFieldPuns,RecordWildCards,CPP #-}
 
 -- #define RCS_DEMO
+import Control.Monad (forever)
+import Control.Concurrent (threadDelay)
+
+import Rapanui.Params ( Params ) 
+import qualified Rapanui.Params as PA
+-- import Rapanui.Common 
+--   ( NordnetHost(..)
+--   , NordnetPort(..)
+--   , CritterType(..)
+--   , Env
+--   )
+
+
 
 main :: IO ()
-main = do
-  putStrLn "hi" 
+main = PA.cmdLineParser
+  >>= \prm -> 
+      work prm 
+
+-- applyPurchases :: (MonadIO m, MonadReader Env m) => m [OptionSale]
+-- applyPurchases =
+--   undefined
+--concat $ map applyPurchase opx 
+
+work :: Params -> IO ()
+work params = 
+  let 
+    env = PA.params2env params
+  in
+    putStrLn (show params) >>
+    putStrLn (show env) 
+
+-- main :: IO ()
+-- main = 
+--   forever $ 
+--     threadDelay (micro2min 1) >>
+--     putStrLn "I DO UNDERSTAND!" 
   
 {-
 import System.Environment (getArgs)

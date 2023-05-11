@@ -26,15 +26,30 @@ dependencies:
 - bytestring-conversion
 - cmdargs 
 - containers
+- exceptions
 - hasql
 - hspec
 - mtl
 - optparse-applicative
+- req 
+- text
+- time
 - utf8-string
 - vector
 
 library:
   source-dirs: src
+
+default-extensions:
+  StrictData
+  OverloadedStrings
+  #ImportQualifiedPost
+  #LambdaCase
+  #DerivingStrategies
+  #DuplicateRecordFields
+  #OverloadedRecordDot
+  #BlockArguments
+  #MultiWayIf
 
 executables:
   rapanui-0.1.0:

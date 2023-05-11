@@ -3,7 +3,8 @@
 # HASKELL_VER="rcs/haskell-pg:9.4.3-slim"
 HASKELL_VER="rcs/haskell-pg:9.4.3"
 ROOT="0"
-NETWORK="pgutil_lofsrud"
+# NETWORK="pgutil_lofsrud"
+NETWORK="host"
 
 
 usage()
