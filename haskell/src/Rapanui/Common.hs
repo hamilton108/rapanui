@@ -1,9 +1,11 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE StrictData #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module Rapanui.Common where
 
+import Data.Time.LocalTime 
+  ( TimeOfDay(..)
+  )
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 
@@ -16,10 +18,6 @@ import Control.Monad.Reader
   ( MonadIO
   , MonadReader
   , ReaderT
-  )
-import Control.Monad.State
-  ( MonadState
-  , StateT
   )
 
 import Data.Text (Text)
@@ -46,6 +44,14 @@ newtype Buy = Buy Double deriving (Eq, Ord, Show, Generic)
 
 newtype Sell = Sell Double deriving (Eq, Show, Generic)
 
+newtype PosixTimeInt = PosixTimeInt Int deriving (Show)
+
+newtype Iso8601 = Iso8601 String deriving (Show)
+
+newtype MarketOpen = MarketOpen TimeOfDay deriving (Show)
+
+newtype MarketClose = MarketClose TimeOfDay deriving (Show)
+
 instance FromJSON OptionTicker
 
 instance FromJSON Oid
@@ -60,23 +66,37 @@ instance FromJSON Buy
 
 instance FromJSON Sell
 
+-- data MarketOpenClose = MarketOpenClose
+--   { open :: TimeOfDay 
+--   , close :: TimeOfDay 
+--   }
+
+data TimeInfo = TimeInfo
+  { posixTimeInt :: PosixTimeInt
+  , iso8601 :: Iso8601
+  }
+  deriving (Show)
+
 data Env = Env
   { getHost :: NordnetHost
   , getPort :: NordnetPort
   , getCt :: CritterType
+  , getOpen :: MarketOpen 
+  , getClose :: MarketClose
   , getInterval :: Int
   }
   deriving (Show)
 
-data PurchaseCtx = PurchaseCtx
-  { x :: Int
-  }
-
 -- type RCTX a = Reader PurchaseCtx a
 
 demoEnv :: Env
-demoEnv =
-  Env (NordnetHost "localhost") (NordnetPort 8082) (CritterType "11") 0
+demoEnv = Env 
+  (NordnetHost "localhost") 
+  (NordnetPort 8082) 
+  (CritterType "11") 
+  (MarketOpen $ TimeOfDay 10 32 0)
+  (MarketClose $ TimeOfDay 10 55 0)
+  0
 
 newtype REIO a = REIO
   { runApp :: ReaderT Env IO a
@@ -86,10 +106,10 @@ newtype REIO a = REIO
     , Applicative
     , Monad
     , MonadIO
-    , MonadThrow
-    , MonadCatch
-    , MonadMask
     , MonadReader Env
+    -- , MonadThrow
+    -- , MonadCatch
+    -- , MonadMask
     )
 
 -- newtype REIO2 a = REIO2

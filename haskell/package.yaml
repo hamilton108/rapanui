@@ -32,8 +32,11 @@ dependencies:
 - mtl
 - optparse-applicative
 - req 
+- split
 - text
 - time
+- transformers
+- tz
 - utf8-string
 - vector
 

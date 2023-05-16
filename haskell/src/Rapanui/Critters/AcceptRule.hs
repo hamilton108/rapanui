@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE StrictData #-}
+{-# LANGUAGE NamedFieldPuns #-}
 
 module Rapanui.Critters.AcceptRule where
 
@@ -14,7 +14,7 @@ import Rapanui.Common
   , Rtyp (..)
   , Sell (..)
   )
-import Rapanui.Critters.OptionSale
+import Rapanui.OptionSale.OptionSaleItem
   ( OptionSale (..)
   , SalePayload (..)
   )
@@ -35,10 +35,11 @@ data AcceptRule = AcceptRule
 
 instance FromJSON AcceptRule
 
-apply' :: Sell -> StockOption -> Rtyp -> Buy -> OptionSale
+apply' :: Sell -> StockOption -> Cid -> Rtyp -> Buy -> OptionSale
 apply'
   (Sell s)
   (StockOption{option = StockOptionItem{buy = (Buy b2)}})
+  c
   (Rtyp rt)
   (Buy value) =
     case rt of
@@ -47,7 +48,7 @@ apply'
           diffFromBought = s - b2
         in
           if diffFromBought > value
-            then Sale (SalePayload (OptionTicker "demo") (Buy b2))
+            then Sale (SalePayload c (Buy b2))
             else NoSale
       _ -> NoSale
 
@@ -60,10 +61,10 @@ apply'
 --   _ -> NoSale
 
 apply :: Sell -> StockOption -> AcceptRule -> OptionSale
-apply s o AcceptRule{rtyp, value, active} =
+apply s o AcceptRule{rtyp, value, active, cid} =
   if active == False
     then NoSale
-    else apply' s o rtyp (Buy value)
+    else apply' s o cid rtyp (Buy value)
 
 --  oid |                   description
 -- -----+--------------------------------------------------

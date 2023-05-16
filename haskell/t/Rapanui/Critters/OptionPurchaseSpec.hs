@@ -7,7 +7,7 @@ import Rapanui.Common
 import qualified Rapanui.Critters.AcceptRule as A
 import qualified Rapanui.Critters.Critter as C
 import qualified Rapanui.Critters.OptionPurchase as O
-import qualified Rapanui.Critters.OptionSale as OS
+import qualified Rapanui.OptionSale.OptionSaleItem as OS
 import qualified Rapanui.StockOption as S
 
 import Test.Hspec
@@ -64,7 +64,7 @@ spec = do
     it "should pass" $ do
       let
         actual = O.applyPurchase p1 (s1 (Buy 8.9) (Sell 9.0))
-      shouldBe actual [OS.Sale (OS.SalePayload (OptionTicker "demo") (Buy 8.9))]
+      shouldBe actual [OS.Sale (OS.SalePayload (Cid 45) (Buy 8.9))]
     it "should not pass due to critter being inactive (status = 8)" $ do
       let
         actual = O.applyPurchase p2 (s1 (Buy 8.9) (Sell 9.0))

@@ -12,7 +12,7 @@ import Rapanui.Common
   )
 import Rapanui.Critters.AcceptRule (AcceptRule)
 import qualified Rapanui.Critters.AcceptRule as A
-import Rapanui.Critters.OptionSale
+import Rapanui.OptionSale.OptionSaleItem
   ( OptionSale (..)
   )
 import Rapanui.StockOption (StockOption)

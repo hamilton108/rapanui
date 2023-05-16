@@ -1,17 +1,13 @@
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE StrictData #-}
+module Rapanui.OptionSale.OptionSaleItem where
 
-module Rapanui.Critters.OptionSale where
-
-import Data.Aeson (FromJSON (..))
-import GHC.Generics (Generic)
 import Rapanui.Common
   ( Buy
+  , Oid
   , Cid
   )
 
 data SalePayload = SalePayload
-  { critterId :: Cid
+  { critterId :: Cid 
   , price :: Buy
   }
   deriving (Eq, Show)

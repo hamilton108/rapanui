@@ -1,18 +1,19 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE StrictData #-}
+{-# LANGUAGE NamedFieldPuns #-}
 
 module Rapanui.Critters.OptionPurchase where
 
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
-  ( Oid
+  ( Env
+  , Oid
   , OptionTicker (..)
   , Sell
   )
 import Rapanui.Critters.Critter (Critter)
 import qualified Rapanui.Critters.Critter as C
-import qualified Rapanui.Critters.OptionSale as S
+import qualified Rapanui.OptionSale.OptionSaleItem as S
 import Rapanui.StockOption
   ( StockOption (..)
   )

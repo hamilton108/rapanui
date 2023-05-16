@@ -1,6 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE StrictData #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 module Rapanui.Adapter.NordnetAdapter where
 

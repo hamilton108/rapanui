@@ -18,12 +18,12 @@ import Options.Applicative.Builder
   ( auto
   , help
   , long
-  , metavar
   , option
   , short
-  , strArgument
   , strOption
   , value
+  --, strArgument
+  --, metavar
   )
 import Options.Applicative.Extra (execParser)
 import Rapanui.Common
@@ -31,7 +31,10 @@ import Rapanui.Common
   , Env (..)
   , NordnetHost (..)
   , NordnetPort (..)
+  , MarketOpen(..)
+  , MarketClose(..)
   )
+import qualified Rapanui.CalendarUtil as C
 
 seconds2micro :: Int -> Int
 seconds2micro ms = ms * 1000000
@@ -45,13 +48,22 @@ defaultHost = "localhost"
 defaultPort :: Int
 defaultPort = 8082
 
+defaultOpen :: String
+defaultOpen = "09:20"
+
+defaultClose :: String
+defaultClose = "11:06"
+--defaultClose = "17:00"
+
 defaultInterval :: Int
-defaultInterval = 60 * 5
+defaultInterval = 2 -- 60 * 5
 
 data Params = Params
   { critterType :: String
   , nordnetHost :: String
   , nordnetPort :: Int
+  , marketOpen :: String
+  , marketClose :: String
   , interval :: Int
   }
   deriving (Show)
@@ -63,14 +75,14 @@ mkParams =
     <$> strOption
       ( long "critter"
           <> short 'c'
-          <> help "Critters"
+          <> help "Critters (paper trade: 11, real: 4)"
           <> value "11"
           <> showDefault
       )
     <*> strOption
       ( long "host"
           <> short 'q'
-          <> help "Nordnet host"
+          <> help "Nordnet service host"
           <> value defaultHost
           <> showDefault
       )
@@ -78,8 +90,22 @@ mkParams =
       auto
       ( long "port"
           <> short 'p'
-          <> help "Nordnet port"
+          <> help "Nordnet service port"
           <> value defaultPort
+          <> showDefault
+      )
+    <*> strOption
+      ( long "market-open"
+          <> short 'o'
+          <> help "Market opens"
+          <> value defaultOpen
+          <> showDefault
+      )
+    <*> strOption
+      ( long "market-close"
+          <> short 'x'
+          <> help "Market closes"
+          <> value defaultClose
           <> showDefault
       )
     <*> option
@@ -104,7 +130,9 @@ params2env p =
     ( NordnetHost
         (T.pack $ nordnetHost p)
     )
-    (NordnetPort (nordnetPort p))
+    (NordnetPort $ nordnetPort p)
     ( CritterType (T.pack $ critterType p)
     )
-    (seconds2micro (interval p))
+    (MarketOpen (C.strToTimeOfDay $ marketOpen p))
+    (MarketClose (C.strToTimeOfDay $ marketClose p))
+    (seconds2micro $ interval p)

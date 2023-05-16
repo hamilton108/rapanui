@@ -1,79 +1,87 @@
-{-# LANGUAGE NamedFieldPuns,RecordWildCards,CPP #-}
-
--- #define RCS_DEMO
-import Control.Monad (forever)
-import Control.Concurrent (threadDelay)
-
-import Rapanui.Params ( Params ) 
+import qualified Rapanui.CalendarUtil as Util
+import qualified Rapanui.Controller as Controller
 import qualified Rapanui.Params as PA
--- import Rapanui.Common 
---   ( NordnetHost(..)
---   , NordnetPort(..)
---   , CritterType(..)
---   , Env
+
+import Control.Concurrent
+  ( threadDelay
+  )
+import Control.Monad
+  ( forever
+  , mzero
+  , when
+  )
+import Control.Monad.IO.Class
+  ( liftIO
+  )
+import Control.Monad.Reader
+  ( runReaderT
+  )
+import Control.Monad.Trans
+  ( lift
+  )
+import Control.Monad.Trans.Maybe
+  ( runMaybeT
+  )
+
+-- import Data.Time.LocalTime
+--   ( TimeOfDay
 --   )
 
+import Rapanui.Common
+  ( Env
+  , MarketClose (..)
+  , MarketOpen (..)
+  )
+import qualified Rapanui.Common as Common
 
+exit = mzero
 
-main :: IO ()
-main = PA.cmdLineParser
-  >>= \prm -> 
-      work prm 
+whileMarketClosed :: MarketOpen -> IO (Maybe a)
+whileMarketClosed (MarketOpen opn) =
+  runMaybeT $
+    forever $
+      ( liftIO $
+          putStrLn "MARKET IS STILL CLOSED!"
+            >> threadDelay (PA.seconds2micro 5)
+            >> Util.timeOfDayPassed opn
+      )
+        >>= \result ->
+          when (result == True) exit
 
--- applyPurchases :: (MonadIO m, MonadReader Env m) => m [OptionSale]
--- applyPurchases =
---   undefined
---concat $ map applyPurchase opx 
-
-work :: Params -> IO ()
-work params = 
+whileMarketOpen :: Env -> IO (Maybe a)
+whileMarketOpen env =
   let 
-    env = PA.params2env params
+    (MarketClose cls) = Common.getClose env
+    interval = Common.getInterval env
   in
-    putStrLn (show params) >>
-    putStrLn (show env) 
+  runMaybeT $
+    forever $
+      ( liftIO $
+          runReaderT (Common.runApp Controller.run) env >>
+          threadDelay interval
+            >> Util.timeOfDayPassed cls
+      )
+        >>= \result ->
+          when (result == True) exit
 
--- main :: IO ()
--- main = 
---   forever $ 
---     threadDelay (micro2min 1) >>
---     putStrLn "I DO UNDERSTAND!" 
-  
-{-
-import System.Environment (getArgs)
-import qualified Text.XML.Light as X 
-import qualified StearnsWharf.System as S
+-- demo :: IO (Maybe a)
+-- demo =
+--   whileMarketClosed (Common.getOpen Common.demoEnv)
 
-#ifdef RCS_DEMO
-import qualified StearnsWharf.XML.XmlLoads as XL
-import qualified StearnsWharf.XML.XmlProfiles as XP
-#endif 
+-- main :: IO (Maybe a)
+-- main = runMaybeT $ forever $ do
+--   str <- lift getLine
+--   when (str == "exit") exit
 
 main :: IO ()
-main = do
-#ifdef RCS_DEMO
-  --s <- readFile "/home/rcs/opt/haskell/stearnswharf/demo/project2.xml"
-  s <- readFile "/home/rcs/opt/haskell/stearnswharf/t/distload05.xml"
-#else
-  [fileName] <- getArgs
-  s <- readFile fileName 
-#endif
-  case X.parseXMLDoc s of
-    Nothing -> error "Failed to parse xml"
-    Just doc -> S.runStearnsWharf doc
-
-
-#ifdef RCS_DEMO
-
-crl = XL.createLoads
-
-cwp = XP.createWoodProfiles
-
-demo :: IO X.Element
-demo = do
-  s <- readFile "/home/rcs/opt/myProjects3/Odins_vei_21/xml/demo.xml"
-  case X.parseXMLDoc s of
-    Nothing -> error "Failed to parse xml"
-    Just doc -> pure doc
-#endif
--}
+main =
+  PA.cmdLineParser
+    >>= \prm ->
+      let
+        env = PA.params2env prm
+      in
+        putStrLn (show prm)
+          >> putStrLn (show env)
+          -- >> whileMarketClosed (Common.getOpen env)
+          >> whileMarketOpen env
+          >> pure ()          

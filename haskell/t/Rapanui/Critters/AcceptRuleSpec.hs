@@ -5,16 +5,13 @@ where
 
 import Rapanui.Common
 import Rapanui.Critters.AcceptRule
-import Rapanui.Critters.OptionSale
+import Rapanui.OptionSale.OptionSaleItem
 import Rapanui.StockOption
 
 import Test.Hspec
 
 s1 :: StockOption
 s1 = createStockOption (Buy 9.0) (Sell 11.0)
-
-t1 :: OptionTicker
-t1 = (OptionTicker "demo")
 
 acc1 :: Double -> AcceptRule
 acc1 v =
@@ -27,16 +24,19 @@ acc1 v =
     , active = True
     }
 
+c1 :: Cid
+c1 = Cid 47
+
 spec :: Spec
 spec = do
   describe "AcceptRuleSpec" $ do
     context "apply'" $ do
       let
-        actual' = apply' (Sell 12.0) s1 (Rtyp 7)
+        actual' = apply' (Sell 12.0) s1 c1 (Rtyp 7)
       it "Should be Sale" $ do
         let
           actual = actual' (Buy 2.5)
-        shouldBe actual (Sale (SalePayload t1 (Buy 9.0)))
+        shouldBe actual (Sale (SalePayload c1 (Buy 9.0)))
       it "Should be NoSale" $ do
         let
           actual = actual' (Buy 5.0)
@@ -45,7 +45,7 @@ spec = do
       it "acc1 2.0 should be Sale" $ do
         let
           actual = apply (Sell 12.0) s1 (acc1 2.0)
-        shouldBe actual (Sale (SalePayload t1 (Buy 9.0)))
+        shouldBe actual (Sale (SalePayload c1 (Buy 9.0)))
     context "apply" $ do
       it "acc1 3.5 should be NoSale" $ do
         let

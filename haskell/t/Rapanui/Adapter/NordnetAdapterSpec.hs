@@ -18,6 +18,7 @@ critters =
   BL.pack
     "[{ \"ticker\": \"NHY9E30\",\
     \\"oid\": 47,\
+    \\"price\": 12.0,\
     \\"critters\":\
     \[{\"vol\": 10,\
     \\"accRules\": \
@@ -39,6 +40,7 @@ expected =
   [ O.OptionPurchase
       (Oid 47)
       (OptionTicker "NHY9E30")
+      (Sell 12.0)
       [ C.Critter
           (Oid 45)
           7

@@ -6,7 +6,7 @@ where
 import Rapanui.Common
 import Rapanui.Critters.AcceptRule
 import Rapanui.Critters.Critter
-import Rapanui.Critters.OptionSale
+import Rapanui.OptionSale.OptionSaleItem
 import Rapanui.StockOption
 
 import Test.Hspec
@@ -25,7 +25,7 @@ c1 =
 
 sale1 :: OptionSale
 sale1 =
-  Sale (SalePayload (OptionTicker "demo") (Buy 9.0))
+  Sale (SalePayload (Cid 45) (Buy 9.0))
 
 spec :: Spec
 spec = do
