@@ -7,7 +7,6 @@ import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
   ( Oid
-  , OptionTicker (..)
   , Sell
   )
 import Rapanui.Critters.AcceptRule (AcceptRule)

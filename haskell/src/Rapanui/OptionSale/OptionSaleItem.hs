@@ -2,7 +2,6 @@ module Rapanui.OptionSale.OptionSaleItem where
 
 import Rapanui.Common
   ( Buy
-  , Oid
   , Cid
   )
 

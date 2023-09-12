@@ -80,7 +80,7 @@ asLocalTimeOfDay =
     let 
       lt = LT.utcToLocalTime myTimeZone ct
     in
-      pure $ LT.localTimeOfDay lt
+      pure $ LT.localTimeOfDay lt
 
 
 strToTimeOfDay :: String -> TimeOfDay 

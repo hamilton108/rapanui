@@ -3,7 +3,7 @@
 
 module Rapanui.Adapter.NordnetAdapter where
 
-import Control.Monad.IO.Class (liftIO)
+-- import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader
   ( MonadIO
   , MonadReader
@@ -14,8 +14,8 @@ import qualified Data.Aeson as Aeson
 -- import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.ByteString as BL
 import Network.HTTP.Req
-  ( HttpException (..)
-  , (/:)
+  ( (/:)
+  -- HttpException (..)
   )
 import qualified Network.HTTP.Req as R
 import Rapanui.Common

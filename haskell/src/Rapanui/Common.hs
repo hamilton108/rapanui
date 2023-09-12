@@ -9,11 +9,11 @@ import Data.Time.LocalTime
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 
-import Control.Monad.Catch
-  ( MonadCatch
-  , MonadMask
-  , MonadThrow
-  )
+-- import Control.Monad.Catch
+--   ( MonadCatch
+--   , MonadMask
+--   , MonadThrow
+--   )
 import Control.Monad.Reader
   ( MonadIO
   , MonadReader

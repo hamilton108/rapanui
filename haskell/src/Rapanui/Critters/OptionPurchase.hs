@@ -6,8 +6,7 @@ module Rapanui.Critters.OptionPurchase where
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
-  ( Env
-  , Oid
+  ( Oid
   , OptionTicker (..)
   , Sell
   )

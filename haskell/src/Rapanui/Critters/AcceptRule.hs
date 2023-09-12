@@ -9,7 +9,6 @@ import Rapanui.Common
   ( Buy (..)
   , Cid
   , Oid
-  , OptionTicker (..)
   , Pid
   , Rtyp (..)
   , Sell (..)
