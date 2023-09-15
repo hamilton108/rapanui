@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleContexts #-}
+
 module Rapanui.OptionSale.OptionSaleService where
 
 import Control.Monad.Reader
@@ -14,4 +16,4 @@ import qualified Rapanui.Adapter.NordnetAdapter as Adapter
 
 processSales :: (MonadIO m, MonadReader Env m) => [OptionSale] -> m ()
 processSales sales = 
-  undefined
+  pure ()

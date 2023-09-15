@@ -1,5 +1,5 @@
 
-module Rapanui.Critters.CalendarUtilSpec
+module Rapanui.CalendarUtilSpec
   ( spec
   )
 where
