@@ -1,0 +1,14 @@
+#!/bin/bash
+
+STACK_WORK="/home/rcs/opt/java/rapanui/haskell/.stack-work"
+
+TARGET="$STACK_WORK/install/x86_64-linux-tinfo6/1d8798d62814362c8eb5f52ac4eff735f4edb4dce0c15285ff9f99f0302387a2/9.2.5/bin"
+
+VER="0.1.0"
+
+EXE="$TARGET/rapanui-$VER"
+
+cp $EXE bin/
+
+exit 0
+

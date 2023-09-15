@@ -36,18 +36,6 @@ import qualified Rapanui.Common as Common
 
 exit = mzero
 
-whileMarketClosed :: MarketOpen -> IO (Maybe a)
-whileMarketClosed (MarketOpen opn) =
-  runMaybeT $
-    forever $
-      ( liftIO $
-          putStrLn "MARKET IS STILL CLOSED!"
-            >> threadDelay (PA.seconds2micro 5)
-            >> Util.timeOfDayPassed opn
-      )
-        >>= \result ->
-          when (result == True) exit
-
 whileMarketOpen :: Env -> IO (Maybe a)
 whileMarketOpen env =
   let 
@@ -64,9 +52,18 @@ whileMarketOpen env =
         >>= \result ->
           when (result == True) exit
 
--- demo :: IO (Maybe a)
--- demo =
---   whileMarketClosed (Common.getOpen Common.demoEnv)
+-- whileMarketClosed :: MarketOpen -> IO (Maybe a)
+-- whileMarketClosed (MarketOpen opn) =
+--   runMaybeT $
+--     forever $
+--       ( liftIO $
+--           putStrLn "MARKET IS STILL CLOSED!"
+--             >> threadDelay (PA.seconds2micro 5)
+--             >> Util.timeOfDayPassed opn
+--       )
+--         >>= \result ->
+--           when (result == True) exit -- (whileMarketOpen env)
+
 
 -- main :: IO (Maybe a)
 -- main = runMaybeT $ forever $ do
