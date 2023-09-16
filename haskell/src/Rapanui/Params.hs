@@ -33,6 +33,7 @@ import Rapanui.Common
   , NordnetPort (..)
   , MarketOpen(..)
   , MarketClose(..)
+  , AdapterCtx (..)
   )
 import qualified Rapanui.CalendarUtil as C
 
@@ -136,3 +137,4 @@ params2env p =
     (MarketOpen (C.strToTimeOfDay $ marketOpen p))
     (MarketClose (C.strToTimeOfDay $ marketClose p))
     (seconds2micro $ interval p)
+    Demo

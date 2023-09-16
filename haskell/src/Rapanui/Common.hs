@@ -77,6 +77,11 @@ data TimeInfo = TimeInfo
   }
   deriving (Show)
 
+data AdapterCtx
+  = Prod 
+  | Demo
+  deriving (Eq, Show)
+  
 data Env = Env
   { getHost :: NordnetHost
   , getPort :: NordnetPort
@@ -84,6 +89,7 @@ data Env = Env
   , getOpen :: MarketOpen 
   , getClose :: MarketClose
   , getInterval :: Int
+  , ctx :: AdapterCtx
   }
   deriving (Show)
 
@@ -97,6 +103,7 @@ demoEnv = Env
   (MarketOpen $ TimeOfDay 10 32 0)
   (MarketClose $ TimeOfDay 10 55 0)
   0
+  Demo
 
 newtype REIO a = REIO
   { runApp :: ReaderT Env IO a
