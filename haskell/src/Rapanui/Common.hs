@@ -40,9 +40,9 @@ newtype NordnetHost = NordnetHost Text deriving (Show)
 
 newtype NordnetPort = NordnetPort Int deriving (Show)
 
-newtype Buy = Buy Double deriving (Eq, Ord, Show, Generic)
+newtype Bid = Bid Double deriving (Eq, Ord, Show, Generic)
 
-newtype Sell = Sell Double deriving (Eq, Show, Generic)
+newtype Ask = Ask Double deriving (Eq, Show, Generic)
 
 newtype PosixTimeInt = PosixTimeInt Int deriving (Show)
 
@@ -62,9 +62,9 @@ instance FromJSON Cid
 
 instance FromJSON Rtyp
 
-instance FromJSON Buy
+instance FromJSON Bid
 
-instance FromJSON Sell
+instance FromJSON Ask
 
 -- data MarketOpenClose = MarketOpenClose
 --   { open :: TimeOfDay 

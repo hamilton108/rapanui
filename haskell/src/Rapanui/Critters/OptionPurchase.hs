@@ -8,7 +8,7 @@ import GHC.Generics (Generic)
 import Rapanui.Common
   ( Oid
   , OptionTicker (..)
-  , Sell
+  , Ask
   )
 import Rapanui.Critters.Critter (Critter)
 import qualified Rapanui.Critters.Critter as C
@@ -20,7 +20,7 @@ import Rapanui.StockOption
 data OptionPurchase = OptionPurchase
   { oid :: Oid
   , ticker :: OptionTicker
-  , price :: Sell
+  , price :: Ask
   , critters :: [Critter]
   }
   deriving (Eq, Show, Generic)

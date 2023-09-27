@@ -17,7 +17,7 @@ p1 =
   O.OptionPurchase
     (Oid 47)
     (OptionTicker "NHY9E30")
-    (Sell 12.0)
+    (Ask 12.0)
     [ C.Critter
         (Oid 45)
         7
@@ -31,7 +31,7 @@ p2 =
   O.OptionPurchase
     (Oid 47)
     (OptionTicker "NHY9E30")
-    (Sell 12.0)
+    (Ask 12.0)
     [ C.Critter
         (Oid 45)
         8
@@ -45,7 +45,7 @@ p3 =
   O.OptionPurchase
     (Oid 47)
     (OptionTicker "NHY9E30")
-    (Sell 12.0)
+    (Ask 12.0)
     [ C.Critter
         (Oid 45)
         7
@@ -54,22 +54,22 @@ p3 =
         ]
     ]
 
-s1 :: Buy -> Sell -> S.StockOption
-s1 buy sell =
-  S.createStockOption buy sell
+s1 :: Bid -> Ask -> S.StockOption
+s1 bid ask =
+  S.createStockOption bid ask
 
 spec :: Spec
 spec = do
   describe "OptionPurchaseSpec" $ do
     it "should pass" $ do
       let
-        actual = O.applyPurchase p1 (s1 (Buy 8.9) (Sell 9.0))
-      shouldBe actual [OS.Sale (OS.SalePayload (Cid 45) (Buy 8.9))]
+        actual = O.applyPurchase p1 (s1 (Bid 8.9) (Ask 9.0))
+      shouldBe actual [OS.Sale (OS.SalePayload (Cid 45) (Bid 8.9))]
     it "should not pass due to critter being inactive (status = 8)" $ do
       let
-        actual = O.applyPurchase p2 (s1 (Buy 8.9) (Sell 9.0))
+        actual = O.applyPurchase p2 (s1 (Bid 8.9) (Ask 9.0))
       shouldBe actual [OS.NotActive]
     it "should not pass due to accept rule being inactive" $ do
       let
-        actual = O.applyPurchase p3 (s1 (Buy 8.9) (Sell 9.0))
+        actual = O.applyPurchase p3 (s1 (Bid 8.9) (Ask 9.0))
       shouldBe actual [OS.NoSale]

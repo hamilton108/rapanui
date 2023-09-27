@@ -12,7 +12,7 @@ import Rapanui.StockOption
 import Test.Hspec
 
 s1 :: StockOption
-s1 = createStockOption (Buy 9.0) (Sell 11.0)
+s1 = createStockOption (Bid 9.0) (Ask 11.0)
 
 c1 :: Critter
 c1 =
@@ -25,7 +25,7 @@ c1 =
 
 sale1 :: OptionSale
 sale1 =
-  Sale (SalePayload (Cid 45) (Buy 9.0))
+  Sale (SalePayload (Cid 45) (Bid 9.0))
 
 spec :: Spec
 spec = do
@@ -44,9 +44,9 @@ spec = do
       shouldBe actual NoSale
     it "applyCritter should be Sale (sale1)" $ do
       let
-        actual = applyCritter (Sell 12.01) s1 c1
+        actual = applyCritter (Ask 12.01) s1 c1
       shouldBe actual sale1
     it "applyCritter should be NoSale" $ do
       let
-        actual = applyCritter (Sell 11.95) s1 c1
+        actual = applyCritter (Ask 11.95) s1 c1
       shouldBe actual NoSale

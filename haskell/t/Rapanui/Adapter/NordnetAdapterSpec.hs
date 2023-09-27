@@ -40,7 +40,7 @@ expected =
   [ O.OptionPurchase
       (Oid 47)
       (OptionTicker "NHY9E30")
-      (Sell 12.0)
+      (Ask 12.0)
       [ C.Critter
           (Oid 45)
           7

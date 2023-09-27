@@ -6,12 +6,12 @@ module Rapanui.Critters.AcceptRule where
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
-  ( Buy (..)
+  ( Bid (..)
   , Cid
   , Oid
   , Pid
   , Rtyp (..)
-  , Sell (..)
+  , Ask(..)
   )
 import Rapanui.OptionSale.OptionSaleItem
   ( OptionSale (..)
@@ -34,36 +34,36 @@ data AcceptRule = AcceptRule
 
 instance FromJSON AcceptRule
 
-apply' :: Sell -> StockOption -> Cid -> Rtyp -> Buy -> OptionSale
+apply' :: Ask -> StockOption -> Cid -> Rtyp -> Bid -> OptionSale
 apply'
-  (Sell s)
-  (StockOption{option = StockOptionItem{buy = (Buy b2)}})
+  (Ask s)
+  (StockOption{option = StockOptionItem{bid = (Bid b2)}})
   c
   (Rtyp rt)
-  (Buy value) =
+  (Bid value) =
     case rt of
       7 ->
         let
           diffFromBought = s - b2
         in
           if diffFromBought > value
-            then Sale (SalePayload c (Buy b2))
+            then Sale (SalePayload c (Bid b2))
             else NoSale
       _ -> NoSale
 
 -- case rt of
 --   7 ->
---     if b > buy then
+--     if b > bid then
 --       NoSale
 --     else
 --       NoSale
 --   _ -> NoSale
 
-apply :: Sell -> StockOption -> AcceptRule -> OptionSale
+apply :: Ask -> StockOption -> AcceptRule -> OptionSale
 apply s o AcceptRule{rtyp, value, active, cid} =
   if active == False
     then NoSale
-    else apply' s o cid rtyp (Buy value)
+    else apply' s o cid rtyp (Bid value)
 
 --  oid |                   description
 -- -----+--------------------------------------------------

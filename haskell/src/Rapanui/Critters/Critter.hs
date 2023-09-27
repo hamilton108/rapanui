@@ -7,7 +7,7 @@ import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
   ( Oid
-  , Sell
+  , Ask 
   )
 import Rapanui.Critters.AcceptRule (AcceptRule)
 import qualified Rapanui.Critters.AcceptRule as A
@@ -35,7 +35,7 @@ extractSale sales =
       [] -> NoSale
       (x : _) -> x
 
-applyCritter :: Sell -> StockOption -> Critter -> OptionSale
+applyCritter :: Ask -> StockOption -> Critter -> OptionSale
 applyCritter s o c =
   if status c == 7
     then extractSale $ map (A.apply s o) (accRules c)

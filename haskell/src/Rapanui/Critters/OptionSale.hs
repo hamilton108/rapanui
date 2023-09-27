@@ -6,13 +6,13 @@ module Rapanui.Critters.OptionSale where
 import Data.Aeson (FromJSON (..))
 import GHC.Generics (Generic)
 import Rapanui.Common
-  ( Buy
+  ( Bid
   , Cid
   )
 
 data SalePayload = SalePayload
   { critterId :: Cid
-  , price :: Buy
+  , price :: Bid
   }
   deriving (Eq, Show)
 

@@ -1,13 +1,13 @@
 module Rapanui.OptionSale.OptionSaleItem where
 
 import Rapanui.Common
-  ( Buy
+  ( Bid
   , Cid
   )
 
 data SalePayload = SalePayload
   { critterId :: Cid 
-  , price :: Buy
+  , price :: Bid
   }
   deriving (Eq, Show)
 

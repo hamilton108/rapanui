@@ -26,8 +26,8 @@ import Rapanui.Common
   , NordnetPort (..)
   , OptionTicker (..)
   , AdapterCtx (..)
-  , Buy (..)
-  , Sell (..)
+  , Bid (..)
+  , Ask (..)
   )
 import qualified Rapanui.Common as Common
 import Rapanui.Critters.OptionPurchase (OptionPurchase)
@@ -77,7 +77,7 @@ fetchStockOption ticker =
         R.runReq R.defaultHttpConfig s >>= \response ->
           pure $ parseStockOptionJson $ R.responseBody response
     else 
-      pure $ Just $ Sopt.createStockOption (Buy 10.0) (Sell 12.0)
+      pure $ Just $ Sopt.createStockOption (Bid 10.0) (Ask 12.0)
 
 -- demo :: IO (Maybe [OptionPurchase])
 -- demo =

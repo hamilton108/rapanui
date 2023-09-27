@@ -11,7 +11,7 @@ import Rapanui.StockOption
 import Test.Hspec
 
 s1 :: StockOption
-s1 = createStockOption (Buy 9.0) (Sell 11.0)
+s1 = createStockOption (Bid 9.0) (Ask11.0)
 
 acc1 :: Double -> AcceptRule
 acc1 v =
@@ -32,22 +32,22 @@ spec = do
   describe "AcceptRuleSpec" $ do
     context "apply'" $ do
       let
-        actual' = apply' (Sell 12.0) s1 c1 (Rtyp 7)
+        actual' = apply' (Ask 12.0) s1 c1 (Rtyp 7)
       it "Should be Sale" $ do
         let
-          actual = actual' (Buy 2.5)
-        shouldBe actual (Sale (SalePayload c1 (Buy 9.0)))
+          actual = actual' (Bid 2.5)
+        shouldBe actual (Sale (SalePayload c1 (Bid 9.0)))
       it "Should be NoSale" $ do
         let
-          actual = actual' (Buy 5.0)
+          actual = actual' (Bid 5.0)
         shouldBe actual NoSale
     context "apply" $ do
       it "acc1 2.0 should be Sale" $ do
         let
-          actual = apply (Sell 12.0) s1 (acc1 2.0)
-        shouldBe actual (Sale (SalePayload c1 (Buy 9.0)))
+          actual = apply (Ask 12.0) s1 (acc1 2.0)
+        shouldBe actual (Sale (SalePayload c1 (Bid 9.0)))
     context "apply" $ do
       it "acc1 3.5 should be NoSale" $ do
         let
-          actual = apply (Sell 12.0) s1 (acc1 3.5)
+          actual = apply (Ask 12.0) s1 (acc1 3.5)
         shouldBe actual NoSale
