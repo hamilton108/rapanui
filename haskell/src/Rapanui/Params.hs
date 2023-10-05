@@ -53,8 +53,8 @@ defaultOpen :: String
 defaultOpen = "09:20"
 
 defaultClose :: String
-defaultClose = "11:06"
---defaultClose = "17:00"
+--defaultClose = "11:06"
+defaultClose = "17:00"
 
 defaultInterval :: Int
 defaultInterval = 2 -- 60 * 5

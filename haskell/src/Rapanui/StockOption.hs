@@ -8,6 +8,8 @@ import GHC.Generics (Generic)
 import Rapanui.Common
   ( Bid (..)
   , Ask (..)
+  , Status(..)
+  , Msg(..)
   )
 
 data StockOptionItem = StockOptionItem
@@ -18,6 +20,8 @@ data StockOptionItem = StockOptionItem
 
 data StockOption = StockOption
   { option :: StockOptionItem
+  , status :: Status
+  , msg :: Msg
   }
   deriving (Eq, Show, Generic)
 
@@ -25,12 +29,12 @@ instance FromJSON StockOptionItem
 
 instance FromJSON StockOption
 
-createStockOption :: Bid -> Ask -> StockOption
-createStockOption bid ask =
+createStockOption :: Bid -> Ask -> Status -> Msg -> StockOption
+createStockOption bid ask status msg =
   let
-    item = StockOptionItem bid ask
+    item = StockOptionItem bid ask 
   in
-    StockOption item
+    StockOption item status msg
 
 -- {
 --   "stock-price": {

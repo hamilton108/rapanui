@@ -82,3 +82,6 @@ main =
           -- >> whileMarketClosed (Common.getOpen env)
           >> whileMarketOpen env
           >> pure ()          
+
+demo6 =
+  runReaderT (Common.runApp Controller.run) Common.demoEnv

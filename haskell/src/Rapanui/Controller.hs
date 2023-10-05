@@ -38,11 +38,10 @@ applyPurchase p@OptionPurchase{ticker} =
 
 run :: (MonadIO m, MonadReader Env m) => m ()
 run =
-  liftIO (putStrLn "run...")
+  liftIO (putStrLn "run...") *>
+  Adapter.fetchCritters >>= \purchases ->
+    mapM applyPurchase purchases >>= \sales ->
+      Service.processSales $ concat sales
 
  
-  -- Adapter.fetchCritters >>= \purchases ->
-  --   mapM applyPurchase purchases >>= \sales ->
-  --     Service.processSales $ concat sales
-
 -- runReaderT (runApp applyPurchase $ head purchases) env  >>= \sales ->

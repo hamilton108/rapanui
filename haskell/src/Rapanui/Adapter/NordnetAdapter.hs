@@ -8,6 +8,7 @@ import Control.Monad.Reader
   ( MonadIO
   , MonadReader
   , ask
+  , liftIO
   )
 import qualified Control.Monad.Reader as Reader
 import qualified Data.Aeson as Aeson
@@ -28,6 +29,8 @@ import Rapanui.Common
   , AdapterCtx (..)
   , Bid (..)
   , Ask (..)
+  , Status(..)
+  , Msg(..)
   )
 import qualified Rapanui.Common as Common
 import Rapanui.Critters.OptionPurchase (OptionPurchase)
@@ -41,7 +44,7 @@ crittersGET =
       NordnetHost host = Common.getHost env
       NordnetPort port = Common.getPort env
       CritterType ct = Common.getCt env
-      myUrl = R.http host /: "critters" /: ct
+      myUrl = R.http host /: "critter" /: "purchase" /: ct
     in
       pure $ R.req R.GET myUrl R.NoReqBody R.bsResponse $ R.port port
 
@@ -61,7 +64,7 @@ stockOptionGET (OptionTicker ticker) =
     let
       NordnetHost host = Common.getHost env
       NordnetPort port = Common.getPort env
-      myUrl = R.http host /: "option" /: ticker
+      myUrl = R.http host /: "rapanui" /: "option" /: ticker
     in
       pure $ R.req R.GET myUrl R.NoReqBody R.bsResponse $ R.port port
 
@@ -75,9 +78,10 @@ fetchStockOption ticker =
     if Common.ctx env == Prod then
       stockOptionGET ticker >>= \s -> 
         R.runReq R.defaultHttpConfig s >>= \response ->
+          --liftIO (putStrLn $ BL.unpack $ R.responseBody response) *>
           pure $ parseStockOptionJson $ R.responseBody response
     else 
-      pure $ Just $ Sopt.createStockOption (Bid 10.0) (Ask 12.0)
+      pure $ Just $ Sopt.createStockOption (Bid 10.0) (Ask 12.0) (Status 1) (Msg "ok")
 
 -- demo :: IO (Maybe [OptionPurchase])
 -- demo =
@@ -100,4 +104,4 @@ demo3 =
 
 demo4 :: IO (Maybe StockOption)
 demo4 =
-  Reader.runReaderT (fetchStockOption $ OptionTicker "YAR3A528.02X") Common.demoEnv
+  Reader.runReaderT (fetchStockOption $ OptionTicker "YAR4C540") Common.demoEnv

@@ -44,6 +44,10 @@ newtype Bid = Bid Double deriving (Eq, Ord, Show, Generic)
 
 newtype Ask = Ask Double deriving (Eq, Show, Generic)
 
+newtype Status = Status Int deriving (Eq, Show, Generic)
+
+newtype Msg = Msg String deriving (Eq, Show, Generic)
+
 newtype PosixTimeInt = PosixTimeInt Int deriving (Show)
 
 newtype Iso8601 = Iso8601 String deriving (Show)
@@ -65,6 +69,10 @@ instance FromJSON Rtyp
 instance FromJSON Bid
 
 instance FromJSON Ask
+
+instance FromJSON Status
+
+instance FromJSON Msg
 
 -- data MarketOpenClose = MarketOpenClose
 --   { open :: TimeOfDay 
@@ -97,13 +105,13 @@ data Env = Env
 
 demoEnv :: Env
 demoEnv = Env 
-  (NordnetHost "localhost") 
+  (NordnetHost "172.20.0.2") 
   (NordnetPort 8082) 
   (CritterType "11") 
   (MarketOpen $ TimeOfDay 10 32 0)
-  (MarketClose $ TimeOfDay 10 55 0)
+  (MarketClose $ TimeOfDay 16 00 0)
   0
-  Demo
+  Prod 
 
 newtype REIO a = REIO
   { runApp :: ReaderT Env IO a

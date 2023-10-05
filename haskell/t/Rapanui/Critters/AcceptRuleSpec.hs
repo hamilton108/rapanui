@@ -11,7 +11,7 @@ import Rapanui.StockOption
 import Test.Hspec
 
 s1 :: StockOption
-s1 = createStockOption (Bid 9.0) (Ask11.0)
+s1 = createStockOption (Bid 9.0) (Ask 11.0)
 
 acc1 :: Double -> AcceptRule
 acc1 v =
